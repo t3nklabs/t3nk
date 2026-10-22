@@ -1,0 +1,116 @@
+---
+// A fixed 400x100 strip diagram of the work collection: one outlined block
+// per project (feed order), an accent bar colored by each project's tags,
+// and a tag legend with counts. Pure inline SVG, scales up cleanly.
+import type { CollectionEntry } from 'astro:content';
+import { byOrder } from '../lib/work';
+
+interface Props {
+	entries: CollectionEntry<'work'>[];
+}
+
+const { entries } = Astro.props;
+
+const W = 400;
+const H = 100;
+const GAP = 3;
+
+const projects = entries.filter((entry) => entry.data.kind === 'project').sort(byOrder);
+
+// Tag colors on the site's cream/ink palette; PRIVACY uses ink itself.
+const tagColors: Record<string, string> = {
+	TOOL: '#fde047',
+	'AI/ML': '#fdba74',
+	WEB3: '#fb923c',
+	PRIVACY: '#0a0a0a',
+};
+
+const blockW = (W - GAP * (projects.length - 1)) / projects.length;
+
+// Legend: every tag in use, most common first.
+const tagCounts = new Map<string, number>();
+for (const entry of projects) {
+	for (const tag of entry.data.tags) {
+		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+	}
+}
+const legend = [...tagCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+let legendX = 0;
+const legendItems = legend.map(([tag, count]) => {
+	const label = `${tag.toUpperCase()} ×${count}`;
+	const item = { tag, count, label, x: legendX };
+	legendX += 7 + 4 + label.length * 4.9 + 14; // square + gap + mono text + spacing
+	return item;
+});
+const legendW = legendX - 14;
+const legendShift = Math.max(0, (W - legendW) / 2);
+---
+
+<svg
+	class="work-diagram"
+	viewBox={`0 0 ${W} ${H}`}
+	width={W}
+	height={H}
+	role="img"
+	aria-labelledby="work-diagram-title"
+>
+	<title id="work-diagram-title">Every work item, feed order, colored by tag</title>
+	{
+		projects.map((project, i) => {
+			const x = i * (blockW + GAP);
+			const tags = project.data.tags;
+			const seg = blockW / tags.length;
+			return (
+				<g>
+					<rect x={x} y={4} width={blockW} height={48} fill="white" stroke="#0a0a0a" stroke-width="1.25" />
+					{tags.map((tag, k) => (
+						<rect x={x + k * seg} y={4} width={seg} height={6} fill={tagColors[tag] ?? '#9ca3af'} />
+					))}
+					<text class="wd-name" x={x + blockW / 2} y={34} text-anchor="middle">
+						{project.data.title.toUpperCase()}
+					</text>
+					<text class="wd-order" x={x + blockW / 2} y={64} text-anchor="middle">
+						{`#${project.data.order}`}
+					</text>
+				</g>
+			);
+		})
+	}
+	{
+		legendItems.map((item) => (
+			<g transform={`translate(${legendShift + item.x} 84)`}>
+				<rect width="7" height="7" fill={tagColors[item.tag] ?? '#9ca3af'} />
+				<text class="wd-legend" x="11" y="6.5">
+					{item.label}
+				</text>
+			</g>
+		))
+	}
+</svg>
+
+<style>
+	.work-diagram {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		font-family: var(--font-mono);
+	}
+
+	.wd-name {
+		font-size: 6.5px;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		fill: #0a0a0a;
+	}
+
+	.wd-order {
+		font-size: 6px;
+		fill: #6b7280;
+	}
+
+	.wd-legend {
+		font-size: 8px;
+		fill: #374151;
+	}
+</style>

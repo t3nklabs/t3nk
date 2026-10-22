@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import WorkFeed from '../../components/WorkFeed.astro';
+import WorkDiagram from '../../components/WorkDiagram.astro';
 import { getCollection } from 'astro:content';
 
 const entries = await getCollection('work');
@@ -14,6 +15,10 @@ const entries = await getCollection('work');
 		<div class="work-head">
 			<h1 class="work-title">WORK</h1>
 			<p class="work-sub">Products and open-source tools built by our team.</p>
+
+			<div class="work-diagram-wrap">
+				<WorkDiagram entries={entries} />
+			</div>
 		</div>
 
 		<WorkFeed entries={entries} active="all" />
@@ -45,6 +50,12 @@ const entries = await getCollection('work');
 		font-size: 1.25rem;
 		color: var(--gray-500);
 		font-family: var(--font-mono);
+	}
+
+	.work-diagram-wrap {
+		display: flex;
+		justify-content: center;
+		margin-top: 2rem;
 	}
 
 	@media (min-width: 768px) {
