@@ -143,7 +143,8 @@ import { url } from '../../consts';
 
 	@media (prefers-reduced-motion: reduce) {
 		.hero-title,
-		.hero-slogan {
+		.hero-slogan,
+		.hero-scroll {
 			animation: none;
 		}
 	}
@@ -204,6 +205,7 @@ import { url } from '../../consts';
 		margin-top: 4rem;
 		display: flex;
 		justify-content: center;
+		animation: hero-fade 0.5s ease-out 0.7s both;
 	}
 
 	.hero-scroll-hint {
