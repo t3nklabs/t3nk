@@ -18,7 +18,7 @@ const isActive = (path: string) => {
 
 <header class="site-header">
 	<div class="header-inner">
-		<a href={url()} class="logo">T3NK</a>
+		<a href={url()} class="header-logo">T3NK</a>
 
 		<nav class="header-nav">
 			{
@@ -26,18 +26,18 @@ const isActive = (path: string) => {
 					<a
 						href={url(link.path)}
 						aria-current={isActive(link.path) ? 'page' : undefined}
-						class:list={['nav-link', { 'is-active': isActive(link.path) }]}
+						class:list={['header-nav-link', { 'is-active': isActive(link.path) }]}
 					>
 						{link.label}
 					</a>
 				))
 			}
-			<a href={url('pitch')} class="pitch-cta">
+			<a href={url('pitch')} class="header-cta">
 				PITCH US
 			</a>
 		</nav>
 
-		<a href={url('pitch')} class="pitch-cta-mobile">
+		<a href={url('pitch')} class="header-cta-mobile">
 			PITCH US
 		</a>
 	</div>
@@ -66,7 +66,7 @@ const isActive = (path: string) => {
 		justify-content: space-between;
 	}
 
-	.logo {
+	.header-logo {
 		font-size: 1.25rem;
 		line-height: 1.75rem;
 		font-weight: 900;
@@ -85,31 +85,31 @@ const isActive = (path: string) => {
 		font-weight: 500;
 	}
 
-	.nav-link {
+	.header-nav-link {
 		transition: color 0.15s ease;
 		border-bottom: 2px solid transparent;
 	}
 
-	.nav-link:hover {
+	.header-nav-link:hover {
 		color: var(--gray-500);
 	}
 
-	.nav-link.is-active {
+	.header-nav-link.is-active {
 		border-bottom-color: var(--black);
 	}
 
-	.pitch-cta {
+	.header-cta {
 		background: var(--black);
 		color: var(--white);
 		padding: 0.5rem 1rem;
 		transition: background-color 0.15s ease;
 	}
 
-	.pitch-cta:hover {
+	.header-cta:hover {
 		background: var(--gray-800);
 	}
 
-	.pitch-cta-mobile {
+	.header-cta-mobile {
 		display: block;
 		font-size: 0.875rem;
 		font-weight: 700;
@@ -121,7 +121,7 @@ const isActive = (path: string) => {
 		.header-nav {
 			display: flex;
 		}
-		.pitch-cta-mobile {
+		.header-cta-mobile {
 			display: none;
 		}
 	}
