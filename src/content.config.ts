@@ -19,4 +19,16 @@ const work = defineCollection({
 	}),
 });
 
-export const collections = { work };
+// POSTS — the writing feed (the thing that isn't called a blog).
+// One markdown file per post, newest first by date, free-form tags.
+const posts = defineCollection({
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
+	schema: z.object({
+		title: z.string(),
+		desc: z.string(),
+		date: z.coerce.date(),
+		tags: z.array(z.string()).default([]),
+	}),
+});
+
+export const collections = { work, posts };
