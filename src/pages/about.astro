@@ -26,7 +26,7 @@ const howWeWork = [
 				<div class="about-hero-rule">
 					<h1 class="about-title">
 						CAPITAL.<br />
-						<span class="fade-text">THEN CODE.</span>
+						<span class="about-fade">THEN CODE.</span>
 					</h1>
 					<p class="about-hero-sub">
 						T3NK is the engineering-first VC. We invest in early-stage software companies, then our team joins
@@ -38,31 +38,31 @@ const howWeWork = [
 			<!-- Why T3NK -->
 			<section class="about-why">
 				<div class="container">
-					<div class="why-grid">
+					<div class="about-why-grid">
 						<div>
-							<h2 class="why-title">
-								<span class="why-icon">
+							<h2 class="about-why-title">
+								<span class="about-why-icon">
 									<Icon name="git-merge" size={32} />
 								</span>
 								WHY T3NK
 							</h2>
-							<p class="why-text">
+							<p class="about-why-text">
 								Venture is often run by people who have never had to ship a production system. Founders get
 								capital and a board seat, then hire their own engineers to fix the technical decisions nobody in
 								the room can evaluate.
 							</p>
-							<p class="why-text why-text-gap">
+							<p class="about-why-text about-why-text-gap">
 								T3NK was built to close that gap. Our partners have built trading systems, logistics platforms,
 								enterprise software, and early-stage products. We invest, and then we work.
 							</p>
 						</div>
 
-						<div class="how-cards">
+						<div class="about-how-cards">
 							{
 								howWeWork.map((item) => (
-									<div class="how-card">
-										<h3 class="how-card-title">{item.title}</h3>
-										<p class="how-card-desc">{item.desc}</p>
+									<div class="about-how-card">
+										<h3 class="about-how-card-title">{item.title}</h3>
+										<p class="about-how-card-desc">{item.desc}</p>
 									</div>
 								))
 							}
@@ -72,55 +72,55 @@ const howWeWork = [
 			</section>
 
 			<!-- How We Work -->
-			<section class="rules">
+			<section class="about-rules">
 				<div class="container">
-					<div class="rules-head">
-						<span class="rules-icon">
+					<div class="about-rules-head">
+						<span class="about-rules-icon">
 							<Icon name="target" size={48} />
 						</span>
 						<div>
-							<h2 class="rules-title">HOW WE WORK</h2>
-							<p class="rules-sub">Three rules that decide where we spend time.</p>
+							<h2 class="about-rules-title">HOW WE WORK</h2>
+							<p class="about-rules-sub">Three rules that decide where we spend time.</p>
 						</div>
 					</div>
 
-					<div class="rules-grid">
+					<div class="about-rules-grid">
 						<!-- Point 1 -->
-						<div class="rule">
-							<h3 class="rule-title">Technical decisions compound</h3>
-							<p class="rule-text">
+						<div class="about-rule">
+							<h3 class="about-rule-title">Technical decisions compound</h3>
+							<p class="about-rule-text">
 								Architecture choices made in month two are expensive to reverse in month eighteen. We help make
 								the few decisions that are hard to undo.
 							</p>
 						</div>
 
 						<!-- Point 2 -->
-						<div class="rule">
-							<h3 class="rule-title">Business logic is the easy part</h3>
-							<p class="rule-text">
+						<div class="about-rule">
+							<h3 class="about-rule-title">Business logic is the easy part</h3>
+							<p class="about-rule-text">
 								The model is usually simple. Building a reliable system around it is not. We spend our time on
 								the implementation layer, where value is created and lost.
 							</p>
 						</div>
 
 						<!-- Point 3 -->
-						<div class="rule">
-							<h3 class="rule-title">Operators, not observers</h3>
-							<p class="rule-text">
+						<div class="about-rule">
+							<h3 class="about-rule-title">Operators, not observers</h3>
+							<p class="about-rule-text">
 								We review PRs, sit in architecture calls, and help you interview your first engineers. We are
 								useful before we are impressive.
 							</p>
 						</div>
 					</div>
 
-					<div class="practice">
-						<h4 class="practice-title">
-							<span class="practice-icon">
+					<div class="about-practice">
+						<h4 class="about-practice-title">
+							<span class="about-practice-icon">
 								<Icon name="cpu" size={20} />
 							</span>
 							Capital + code, in practice
 						</h4>
-						<p class="practice-text">
+						<p class="about-practice-text">
 							We invest early, join your repository, and stay through the first scaling problems. We do not hand
 							off a prototype and leave.
 						</p>
@@ -130,13 +130,13 @@ const howWeWork = [
 
 			<!-- Call to Action -->
 			<section class="about-cta">
-				<h2 class="cta-title">Bring us the hard part.</h2>
-				<p class="cta-sub">If the risk in your company is technical, we should talk.</p>
-				<div class="cta-actions">
-					<a href={url('pitch')} class="cta-solid">
+				<h2 class="about-cta-title">Bring us the hard part.</h2>
+				<p class="about-cta-sub">If the risk in your company is technical, we should talk.</p>
+				<div class="about-cta-actions">
+					<a href={url('pitch')} class="about-cta-solid">
 						<Icon name="zap" size={20} /> PITCH US
 					</a>
-					<a href={url('#contact')} class="cta-ghost">CONTACT</a>
+					<a href={url('#contact')} class="about-cta-ghost">CONTACT</a>
 				</div>
 			</section>
 		</div>
@@ -181,7 +181,7 @@ const howWeWork = [
 		line-height: 0.8;
 	}
 
-	.fade-text {
+	.about-fade {
 		color: transparent;
 		background-image: linear-gradient(to right, var(--white), var(--gray-400), var(--gray-600));
 		-webkit-background-clip: text;
@@ -200,13 +200,13 @@ const howWeWork = [
 		margin-bottom: 8rem;
 	}
 
-	.why-grid {
+	.about-why-grid {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 4rem;
 	}
 
-	.why-title {
+	.about-why-title {
 		font-size: 2.25rem;
 		font-weight: 700;
 		margin-bottom: 2rem;
@@ -215,26 +215,26 @@ const howWeWork = [
 		gap: 0.75rem;
 	}
 
-	.why-icon :global(svg) {
+	.about-why-icon :global(svg) {
 		color: var(--gray-500);
 	}
 
-	.why-text {
+	.about-why-text {
 		font-size: 1.125rem;
 		color: var(--gray-300);
 		margin-bottom: 1.5rem;
 		line-height: 1.625;
 	}
 
-	.why-text-gap {
+	.about-why-text-gap {
 		margin-bottom: 0;
 	}
 
-	.how-cards > * + * {
+	.about-how-cards > * + * {
 		margin-top: 1rem;
 	}
 
-	.how-card {
+	.about-how-card {
 		padding: 1.5rem;
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		border-radius: 0.5rem;
@@ -242,80 +242,80 @@ const howWeWork = [
 		transition: background-color 0.15s ease;
 	}
 
-	.how-card:hover {
+	.about-how-card:hover {
 		background: rgba(255, 255, 255, 0.1);
 	}
 
-	.how-card-title {
+	.about-how-card-title {
 		font-family: var(--font-mono);
 		font-size: 1.25rem;
 		font-weight: 700;
 		color: var(--gray-200);
 	}
 
-	.how-card-desc {
+	.about-how-card-desc {
 		font-size: 0.875rem;
 		color: var(--gray-500);
 		margin-top: 0.5rem;
 	}
 
 	/* How we work */
-	.rules {
+	.about-rules {
 		background: var(--white);
 		color: var(--black);
 		padding: 6rem 1.5rem;
 	}
 
-	.rules .container {
+	.about-rules .container {
 		max-width: 80rem;
 		margin: 0 auto;
 	}
 
-	.rules-head {
+	.about-rules-head {
 		display: flex;
 		align-items: flex-start;
 		gap: 1rem;
 		margin-bottom: 3rem;
 	}
 
-	.rules-title {
+	.about-rules-title {
 		font-size: 3rem;
 		font-weight: 900;
 		letter-spacing: -0.05em;
 	}
 
-	.rules-sub {
+	.about-rules-sub {
 		font-family: var(--font-mono);
 		font-size: 0.875rem;
 		color: var(--gray-500);
 		margin-top: 0.5rem;
 	}
 
-	.rules-grid {
+	.about-rules-grid {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 3rem;
 	}
 
-	.rule > * + * {
+	.about-rule > * + * {
 		margin-top: 1rem;
 	}
 
-	.rule-title {
+	.about-rule-title {
 		font-size: 1.5rem;
 		font-weight: 700;
 		border-bottom: 2px solid var(--black);
 		padding-bottom: 0.5rem;
 	}
 
-	.rule-text {
+	.about-rule-text {
 		font-family: var(--font-mono);
 		font-size: 0.875rem;
 		line-height: 1.625;
 		opacity: 0.8;
 	}
 
-	.practice {
+	.about-practice {
 		margin-top: 4rem;
 		padding: 2rem;
 		background: var(--gray-100);
@@ -323,7 +323,7 @@ const howWeWork = [
 		border: 1px solid var(--gray-300);
 	}
 
-	.practice-title {
+	.about-practice-title {
 		font-weight: 700;
 		font-size: 1.25rem;
 		margin-bottom: 1rem;
@@ -332,7 +332,7 @@ const howWeWork = [
 		gap: 0.5rem;
 	}
 
-	.practice-text {
+	.about-practice-text {
 		color: var(--gray-700);
 		max-width: 48rem;
 	}
@@ -345,25 +345,25 @@ const howWeWork = [
 		text-align: center;
 	}
 
-	.cta-title {
+	.about-cta-title {
 		font-size: 2.25rem;
 		font-weight: 900;
 		margin-bottom: 1.5rem;
 	}
 
-	.cta-sub {
+	.about-cta-sub {
 		color: var(--gray-400);
 		font-family: var(--font-mono);
 		margin-bottom: 2.5rem;
 	}
 
-	.cta-actions {
+	.about-cta-actions {
 		display: flex;
 		justify-content: center;
 		gap: 1.5rem;
 	}
 
-	.cta-solid {
+	.about-cta-solid {
 		background: var(--white);
 		color: var(--black);
 		padding: 1rem 2rem;
@@ -374,18 +374,18 @@ const howWeWork = [
 		gap: 0.5rem;
 	}
 
-	.cta-solid:hover {
+	.about-cta-solid:hover {
 		background: var(--gray-200);
 	}
 
-	.cta-ghost {
+	.about-cta-ghost {
 		border: 1px solid rgba(255, 255, 255, 0.3);
 		padding: 1rem 2rem;
 		font-weight: 700;
 		transition: background-color 0.15s ease;
 	}
 
-	.cta-ghost:hover {
+	.about-cta-ghost:hover {
 		background: rgba(255, 255, 255, 0.1);
 	}
 
@@ -393,16 +393,16 @@ const howWeWork = [
 		.about-title {
 			font-size: 8rem;
 		}
-		.why-grid {
+		.about-why-grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
-		.cta-title {
+		.about-cta-title {
 			font-size: 3.75rem;
 		}
 	}
 
 	@media (min-width: 1024px) {
-		.rules-grid {
+		.about-rules-grid {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 	}
