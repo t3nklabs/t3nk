@@ -35,18 +35,18 @@ const members = [
 		<div class="team-grid">
 			{
 				members.map((member) => (
-					<div class="member">
-						<div class="member-photo">
-							<img src={asset(member.src)} alt={member.alt} class="member-img" />
-							<div class="member-shade"></div>
+					<div class="team-member">
+						<div class="team-member-photo">
+							<img src={asset(member.src)} alt={member.alt} class="team-member-img" />
+							<div class="team-member-shade"></div>
 						</div>
 
 						<div>
-							<div class="member-head">
-								<h3 class="member-name">{member.alt}</h3>
+							<div class="team-member-head">
+								<h3 class="team-member-name">{member.alt}</h3>
 							</div>
-							<p class="member-role">{member.role}</p>
-							<p class="member-desc">{member.desc}</p>
+							<p class="team-member-role">{member.role}</p>
+							<p class="team-member-desc">{member.desc}</p>
 						</div>
 					</div>
 				))
@@ -93,7 +93,7 @@ const members = [
 	}
 
 	/* Reveal color photo on hover */
-	.member-photo {
+	.team-member-photo {
 		position: relative;
 		overflow: hidden;
 		margin-bottom: 1.5rem;
@@ -101,7 +101,7 @@ const members = [
 		aspect-ratio: 3 / 4;
 	}
 
-	.member-img {
+	.team-member-img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -109,35 +109,35 @@ const members = [
 		transition: filter 0.5s ease;
 	}
 
-	.member:hover .member-img {
+	.team-member:hover .team-member-img {
 		filter: grayscale(0);
 	}
 
-	.member-shade {
+	.team-member-shade {
 		position: absolute;
 		inset: 0;
 		background: rgba(0, 0, 0, 0.1);
 		transition: background-color 0.3s ease;
 	}
 
-	.member:hover .member-shade {
+	.team-member:hover .team-member-shade {
 		background: transparent;
 	}
 
-	.member-head {
+	.team-member-head {
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
 		margin-bottom: 0.5rem;
 	}
 
-	.member-name {
+	.team-member-name {
 		font-weight: 700;
 		font-size: 1.5rem;
 		text-transform: uppercase;
 	}
 
-	.member-role {
+	.team-member-role {
 		font-family: var(--font-mono);
 		font-size: 0.875rem;
 		color: var(--gray-500);
@@ -148,7 +148,7 @@ const members = [
 		padding-bottom: 1rem;
 	}
 
-	.member-desc {
+	.team-member-desc {
 		color: var(--gray-600);
 		line-height: 1.625;
 	}
