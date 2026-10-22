@@ -19,7 +19,7 @@ const standards = [
 				<span class="standards-badge">Engineering Standards</span>
 				<h2 class="standards-title">
 					We build what<br />
-					<span class="fade-text">we back.</span>
+					<span class="standards-fade">we back.</span>
 				</h2>
 				<div class="standards-copy">
 					<p>Our engineers work in the same repository as your team. That changes what gets built and how.</p>
@@ -31,22 +31,22 @@ const standards = [
 				</div>
 			</div>
 
-			<div class="terminal">
-				<div class="terminal-bar">
-					<div class="terminal-dot"></div>
-					<div class="terminal-dot"></div>
-					<div class="terminal-dot"></div>
-					<span class="terminal-label">engineering-standards — zsh</span>
+			<div class="standards-terminal">
+				<div class="standards-terminal-bar">
+					<div class="standards-terminal-dot"></div>
+					<div class="standards-terminal-dot"></div>
+					<div class="standards-terminal-dot"></div>
+					<span class="standards-terminal-label">engineering-standards — zsh</span>
 				</div>
 
-				<div class="terminal-body">
-					<div class="terminal-caption">// In the repo from day one</div>
+				<div class="standards-terminal-body">
+					<div class="standards-terminal-caption">// In the repo from day one</div>
 
 					<ul class="standards-list">
 						{
 							standards.map((item) => (
 								<li class="standards-item">
-									<span class="check">
+									<span class="standards-check">
 										<Icon name="check" size={16} aria-hidden="true" />
 									</span>
 									<span>{item}</span>
@@ -55,9 +55,9 @@ const standards = [
 						}
 					</ul>
 
-					<div class="terminal-caption terminal-caption-gap">// What we don't do</div>
+					<div class="standards-terminal-caption terminal-caption-gap">// What we don't do</div>
 
-					<ul class="not-list">
+					<ul class="standards-not-list">
 						<li>Ship a prototype and disappear.</li>
 						<li>Sell an audit we should have done during the build.</li>
 						<li>Guarantee outcomes we do not control.</li>
@@ -67,19 +67,19 @@ const standards = [
 		</div>
 
 		<div class="standards-cards">
-			<div class="card">
-				<h3 class="card-title">Code you can own</h3>
-				<p class="card-text">
+			<div class="standards-card">
+				<h3 class="standards-card-title">Code you can own</h3>
+				<p class="standards-card-text">
 					Your team gets the architecture, documentation, and context to maintain the system without us.
 				</p>
 			</div>
-			<div class="card">
-				<h3 class="card-title">Security from day one</h3>
-				<p class="card-text">Threat modeling and code review are part of the build, not a post-launch audit.</p>
+			<div class="standards-card">
+				<h3 class="standards-card-title">Security from day one</h3>
+				<p class="standards-card-text">Threat modeling and code review are part of the build, not a post-launch audit.</p>
 			</div>
-			<div class="card">
-				<h3 class="card-title">We stay involved</h3>
-				<p class="card-text">We work through the first scaling problems, not just the first release.</p>
+			<div class="standards-card">
+				<h3 class="standards-card-title">We stay involved</h3>
+				<p class="standards-card-text">We work through the first scaling problems, not just the first release.</p>
 			</div>
 		</div>
 	</div>
@@ -120,7 +120,7 @@ const standards = [
 		line-height: 1.25;
 	}
 
-	.fade-text {
+	.standards-fade {
 		color: transparent;
 		background-image: linear-gradient(to right, var(--black), var(--gray-500));
 		-webkit-background-clip: text;
@@ -142,7 +142,7 @@ const standards = [
 	}
 
 	/* Terminal card */
-	.terminal {
+	.standards-terminal {
 		position: relative;
 		background: var(--black);
 		color: var(--white);
@@ -154,7 +154,7 @@ const standards = [
 		border: 1px solid var(--gray-800);
 	}
 
-	.terminal-bar {
+	.standards-terminal-bar {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -168,28 +168,28 @@ const standards = [
 		gap: 0.5rem;
 	}
 
-	.terminal-dot {
+	.standards-terminal-dot {
 		width: 0.75rem;
 		height: 0.75rem;
 		border-radius: 50%;
 		background: var(--gray-700);
 	}
 
-	.terminal-label {
+	.standards-terminal-label {
 		margin-left: 1rem;
 		font-size: 0.75rem;
 		color: var(--gray-500);
 	}
 
-	.terminal-body {
+	.standards-terminal-body {
 		margin-top: 2rem;
 	}
 
-	.terminal-body > * + * {
+	.standards-terminal-body > * + * {
 		margin-top: 1.5rem;
 	}
 
-	.terminal-caption {
+	.standards-terminal-caption {
 		color: var(--gray-500);
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
@@ -198,7 +198,7 @@ const standards = [
 		padding-bottom: 0.5rem;
 	}
 
-	.terminal-caption-gap {
+	.standards-terminal-caption-gap {
 		padding-top: 0.5rem;
 	}
 
@@ -214,17 +214,17 @@ const standards = [
 		color: #d1d5db;
 	}
 
-	.check {
+	.standards-check {
 		margin-top: 0.125rem;
 		color: #22c55e;
 		flex-shrink: 0;
 	}
 
-	.not-list > * + * {
+	.standards-not-list > * + * {
 		margin-top: 0.75rem;
 	}
 
-	.not-list {
+	.standards-not-list {
 		font-size: 0.875rem;
 		color: var(--gray-500);
 	}
@@ -237,21 +237,21 @@ const standards = [
 		margin-top: 4rem;
 	}
 
-	.card {
+	.standards-card {
 		background: var(--white);
 		padding: 2rem;
 		border: 1px solid var(--gray-200);
 		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	}
 
-	.card-title {
+	.standards-card-title {
 		font-weight: 700;
 		font-size: 1.25rem;
 		margin-bottom: 0.75rem;
 		text-transform: uppercase;
 	}
 
-	.card-text {
+	.standards-card-text {
 		color: var(--gray-600);
 		font-size: 0.875rem;
 		line-height: 1.625;
