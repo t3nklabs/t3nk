@@ -17,41 +17,155 @@ const isProject = entry.data.kind === 'project';
 const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 ---
 
-<a
-	href={url(`work/${entry.id}`)}
-	class="group relative p-8 bg-white border border-gray-100 rounded-2xl hover:border-black transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 flex flex-col h-full cursor-pointer block"
->
+<a href={url(`work/${entry.id}`)} class="work-card">
 	<!-- Top Row: Mark and Link -->
-	<div class="flex justify-between items-start mb-6">
-		<div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors duration-500">
-			<span class="font-bold text-lg">{entry.data.title.charAt(0)}</span>
+	<div class="card-top">
+		<div class="card-mark">
+			<span class="card-mark-letter">{entry.data.title.charAt(0)}</span>
 		</div>
-		<Icon name="arrow-up-right" size={20} class="text-gray-300 group-hover:text-black transition-colors" aria-hidden="true" />
+		<Icon name="arrow-up-right" size={20} class="card-arrow" aria-hidden="true" />
 	</div>
 
 	<!-- Title -->
-	<h3 class="text-xl font-bold font-sans mb-3 text-black">{entry.data.title}</h3>
+	<h3 class="card-title">{entry.data.title}</h3>
 
 	<!-- Description -->
-	<p class="text-sm text-gray-500 leading-relaxed font-sans mb-6 flex-grow">{entry.data.desc}</p>
+	<p class="card-desc">{entry.data.desc}</p>
 
 	<!-- Bottom Row: badge + meta -->
-	<div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-50">
-		<div class="flex items-baseline gap-3">
-			<span class="text-[10px] uppercase tracking-wider text-gray-500 bg-gray-100 px-2 py-1 rounded font-bold">
-				{primaryBadge}
-			</span>
+	<div class="card-meta">
+		<div class="card-meta-left">
+			<span class="card-badge">{primaryBadge}</span>
 			{
 				!isProject && entry.data.date && <FormattedDate date={entry.data.date} />
 			}
 			{
 				!isProject && projectTitle && (
-					<span class="font-mono text-[11px] text-gray-400">{projectTitle}</span>
+					<span class="card-project">{projectTitle}</span>
 				)
 			}
 		</div>
-		<span class="font-mono text-[10px] uppercase tracking-wider text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
-			View
-		</span>
+		<span class="card-view">View</span>
 	</div>
 </a>
+
+<style>
+	.work-card {
+		position: relative;
+		padding: 2rem;
+		background: var(--white);
+		border: 1px solid var(--gray-100);
+		border-radius: 1rem;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		cursor: pointer;
+		transition: border-color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+	}
+
+	.work-card:hover {
+		border-color: var(--black);
+		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+		transform: translateY(-0.5rem);
+	}
+
+	.card-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 1.5rem;
+	}
+
+	.card-mark {
+		width: 3rem;
+		height: 3rem;
+		background: var(--gray-50);
+		border-radius: 0.75rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background-color 0.5s ease, color 0.5s ease;
+	}
+
+	.card-mark-letter {
+		font-weight: 700;
+		font-size: 1.125rem;
+	}
+
+	.card-arrow {
+		color: var(--gray-300);
+		transition: color 0.5s ease;
+	}
+
+	.work-card:hover .card-mark {
+		background: var(--black);
+		color: var(--white);
+	}
+
+	.work-card:hover .card-arrow {
+		color: var(--black);
+	}
+
+	.card-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		font-family: var(--font-sans);
+		margin-bottom: 0.75rem;
+		color: var(--black);
+	}
+
+	.card-desc {
+		font-size: 0.875rem;
+		color: var(--gray-500);
+		line-height: 1.625;
+		font-family: var(--font-sans);
+		margin-bottom: 1.5rem;
+		flex-grow: 1;
+	}
+
+	.card-meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: auto;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--gray-50);
+	}
+
+	.card-meta-left {
+		display: flex;
+		align-items: baseline;
+		gap: 0.75rem;
+	}
+
+	.card-badge {
+		font-size: 0.625rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--gray-500);
+		background: var(--gray-100);
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.25rem;
+		font-weight: 700;
+	}
+
+	.card-project {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		color: var(--gray-400);
+	}
+
+	.card-view {
+		font-family: var(--font-mono);
+		font-size: 0.625rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--gray-400);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.work-card:hover .card-view {
+		opacity: 1;
+	}
+</style>

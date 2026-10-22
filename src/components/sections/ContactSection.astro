@@ -6,98 +6,72 @@ import { url } from '../../consts';
 const year = new Date().getFullYear();
 ---
 
-<section id="contact" class="relative py-24 bg-black text-white px-6 overflow-hidden">
+<section id="contact" class="contact">
 	<!-- Background Pattern -->
-	<div
-		class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"
-	></div>
+	<div class="contact-bg"></div>
 
-	<div class="relative z-10 max-w-7xl mx-auto">
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+	<div class="container contact-container">
+		<div class="contact-grid">
 			<!-- Heading Side -->
-			<div class="space-y-8">
-				<div
-					class="inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 text-xs font-mono tracking-widest text-gray-400 bg-white/5 backdrop-blur-sm"
-				>
-					<span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
+			<div class="contact-intro">
+				<div class="badge-pill">
+					<span class="badge-dot"></span>
 					CONTACT
 				</div>
 
-				<h2 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9]">
+				<h2 class="contact-title">
 					BRING US<br />
-					<span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">THE HARD PART.</span>
+					<span class="fade-text">THE HARD PART.</span>
 				</h2>
 
-				<p class="text-xl text-gray-400 max-w-md font-mono leading-relaxed border-l-2 border-white/20 pl-6">
+				<p class="contact-note">
 					If you're building software that has to work, tell us what you're working on. We'll reply with a
 					technical view, not a sales pitch.
 				</p>
 			</div>
 
 			<!-- Contact Options Side -->
-			<div class="grid gap-6">
+			<div class="contact-options">
 				<!-- Pitch Option -->
-				<a
-					href={url('pitch')}
-					class="group relative block p-8 bg-zinc-900/50 border border-white/10 hover:border-white/30 transition-all duration-500 rounded-2xl overflow-hidden"
-				>
-					<div
-						class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-					></div>
+				<a href={url('pitch')} class="option">
+					<div class="option-sheen"></div>
 
-					<div class="relative z-10">
-						<div class="flex justify-between items-start mb-6">
-							<div class="p-3 bg-white/5 rounded-xl group-hover:bg-white/10 transition-colors duration-300">
-								<Icon name="rocket" size={32} class="text-white" />
+					<div class="option-body">
+						<div class="option-top">
+							<div class="option-icon">
+								<Icon name="rocket" size={32} />
 							</div>
-							<span
-								class="font-mono text-[10px] uppercase tracking-widest border border-white/20 px-3 py-1 rounded-full text-gray-400 group-hover:border-white/40 group-hover:text-white transition-all duration-300"
-							>
-								For Founders
-							</span>
+							<span class="option-badge">For Founders</span>
 						</div>
 
-						<h3 class="text-2xl font-bold mb-2 group-hover:text-white transition-colors">Pitch your company</h3>
-						<p class="text-sm font-mono text-gray-400 mb-6 group-hover:text-gray-300 transition-colors">
-							Pre-seed to Series A. Software companies with technical founders.
-						</p>
+						<h3 class="option-title">Pitch your company</h3>
+						<p class="option-desc">Pre-seed to Series A. Software companies with technical founders.</p>
 
-						<div class="flex items-center gap-2 font-bold text-sm text-white group-hover:text-gray-200 transition-colors">
+						<div class="option-cta">
 							Start a conversation
-							<Icon name="arrow-right" size={16} class="group-hover:translate-x-1 transition-transform duration-300" />
+							<Icon name="arrow-right" size={16} class="option-arrow" />
 						</div>
 					</div>
 				</a>
 
 				<!-- General Inquiry Option -->
-				<a
-					href="mailto:in@t3nk.com"
-					class="group relative block p-8 bg-zinc-900/50 border border-white/10 hover:border-white/30 transition-all duration-500 rounded-2xl overflow-hidden"
-				>
-					<div
-						class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-					></div>
+				<a href="mailto:in@t3nk.com" class="option">
+					<div class="option-sheen"></div>
 
-					<div class="relative z-10">
-						<div class="flex justify-between items-start mb-6">
-							<div class="p-3 bg-white/5 rounded-xl group-hover:bg-white/10 transition-colors duration-300">
-								<Icon name="mail" size={32} class="text-white" />
+					<div class="option-body">
+						<div class="option-top">
+							<div class="option-icon">
+								<Icon name="mail" size={32} />
 							</div>
-							<span
-								class="font-mono text-[10px] uppercase tracking-widest border border-white/20 px-3 py-1 rounded-full text-gray-400 group-hover:border-white/40 group-hover:text-white transition-all duration-300"
-							>
-								General
-							</span>
+							<span class="option-badge">General</span>
 						</div>
 
-						<h3 class="text-2xl font-bold mb-2 group-hover:text-white transition-colors">General inquiries</h3>
-						<p class="text-sm font-mono text-gray-400 mb-6 group-hover:text-gray-300 transition-colors">
-							Partnerships, hiring, or a question.
-						</p>
+						<h3 class="option-title">General inquiries</h3>
+						<p class="option-desc">Partnerships, hiring, or a question.</p>
 
-						<div class="flex items-center gap-2 font-bold text-sm text-white group-hover:text-gray-200 transition-colors">
+						<div class="option-cta">
 							in@t3nk.com
-							<Icon name="arrow-right" size={16} class="group-hover:translate-x-1 transition-transform duration-300" />
+							<Icon name="arrow-right" size={16} class="option-arrow" />
 						</div>
 					</div>
 				</a>
@@ -105,38 +79,300 @@ const year = new Date().getFullYear();
 		</div>
 
 		<!-- Principles -->
-		<div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-12 border-t border-white/10">
-			<div class="group">
-				<div class="text-2xl md:text-3xl font-black mb-2 flex items-center gap-2">
-					<Icon name="code-2" size={20} class="text-gray-500" /> Capital + code
+		<div class="principles">
+			<div class="principle">
+				<div class="principle-title">
+					<Icon name="code-2" size={20} class="principle-icon" /> Capital + code
 				</div>
-				<div class="text-xs text-gray-500 font-mono uppercase tracking-widest">How we work</div>
+				<div class="principle-label">How we work</div>
 			</div>
 
-			<div class="group">
-				<div class="text-2xl md:text-3xl font-black mb-2 flex items-center gap-2">
-					<Icon name="dollar-sign" size={20} class="text-gray-500" /> Early stage
+			<div class="principle">
+				<div class="principle-title">
+					<Icon name="dollar-sign" size={20} class="principle-icon" /> Early stage
 				</div>
-				<div class="text-xs text-gray-500 font-mono uppercase tracking-widest">Stage</div>
+				<div class="principle-label">Stage</div>
 			</div>
 
-			<div class="group">
-				<div class="text-2xl md:text-3xl font-black mb-2 flex items-center gap-2">
-					<Icon name="layers" size={20} class="text-gray-500" /> Software
+			<div class="principle">
+				<div class="principle-title">
+					<Icon name="layers" size={20} class="principle-icon" /> Software
 				</div>
-				<div class="text-xs text-gray-500 font-mono uppercase tracking-widest">Focus</div>
+				<div class="principle-label">Focus</div>
 			</div>
 
-			<div class="group">
-				<div class="text-2xl md:text-3xl font-black mb-2 flex items-center gap-2">
-					<Icon name="users" size={20} class="text-gray-500" /> Long-term
+			<div class="principle">
+				<div class="principle-title">
+					<Icon name="users" size={20} class="principle-icon" /> Long-term
 				</div>
-				<div class="text-xs text-gray-500 font-mono uppercase tracking-widest">Horizon</div>
+				<div class="principle-label">Horizon</div>
 			</div>
 		</div>
 
-		<footer class="mt-16 pt-8 border-t border-white/10 text-center text-[10px] text-gray-600 font-mono tracking-widest uppercase">
+		<footer class="site-footer">
 			T3NK &copy; {year} — Capital + code
 		</footer>
 	</div>
 </section>
+
+<style>
+	.contact {
+		position: relative;
+		padding: 6rem 1.5rem;
+		background: var(--black);
+		color: var(--white);
+		overflow: hidden;
+	}
+
+	/* Faint grid with a radial mask fading in from the top */
+	.contact-bg {
+		position: absolute;
+		inset: 0;
+		background-image:
+			linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+			linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+		background-size: 4rem 4rem;
+		mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+		-webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+		pointer-events: none;
+	}
+
+	.contact-container {
+		position: relative;
+		z-index: 10;
+	}
+
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 4rem;
+		align-items: start;
+	}
+
+	/* Heading side */
+	.contact-intro > * + * {
+		margin-top: 2rem;
+	}
+
+	.badge-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 9999px;
+		padding: 0.375rem 1rem;
+		font-size: 0.75rem;
+		font-family: var(--font-mono);
+		letter-spacing: 0.1em;
+		color: var(--gray-400);
+		background: rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(4px);
+	}
+
+	.badge-dot {
+		width: 0.375rem;
+		height: 0.375rem;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.4);
+	}
+
+	.contact-title {
+		font-size: 3.75rem;
+		font-weight: 900;
+		letter-spacing: -0.05em;
+		line-height: 0.9;
+	}
+
+	.fade-text {
+		color: transparent;
+		background-image: linear-gradient(to right, var(--white), var(--gray-400), var(--gray-600));
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+
+	.contact-note {
+		font-size: 1.25rem;
+		color: var(--gray-400);
+		max-width: 28rem;
+		font-family: var(--font-mono);
+		line-height: 1.625;
+		border-left: 2px solid rgba(255, 255, 255, 0.2);
+		padding-left: 1.5rem;
+	}
+
+	/* Options side */
+	.contact-options {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.option {
+		position: relative;
+		display: block;
+		padding: 2rem;
+		background: rgba(24, 24, 27, 0.5);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 1rem;
+		overflow: hidden;
+		transition: border-color 0.5s ease;
+	}
+
+	.option:hover {
+		border-color: rgba(255, 255, 255, 0.3);
+	}
+
+	.option-sheen {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), transparent);
+		opacity: 0;
+		transition: opacity 0.5s ease;
+	}
+
+	.option:hover .option-sheen {
+		opacity: 1;
+	}
+
+	.option-body {
+		position: relative;
+		z-index: 10;
+	}
+
+	.option-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 1.5rem;
+	}
+
+	.option-icon {
+		padding: 0.75rem;
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 0.75rem;
+		transition: background-color 0.3s ease;
+	}
+
+	.option:hover .option-icon {
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	.option-icon :global(svg) {
+		color: var(--white);
+	}
+
+	.option-badge {
+		font-family: var(--font-mono);
+		font-size: 0.625rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		padding: 0.25rem 0.75rem;
+		border-radius: 9999px;
+		color: var(--gray-400);
+		transition: border-color 0.3s ease, color 0.3s ease;
+	}
+
+	.option:hover .option-badge {
+		border-color: rgba(255, 255, 255, 0.4);
+		color: var(--white);
+	}
+
+	.option-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+	}
+
+	.option-desc {
+		font-size: 0.875rem;
+		font-family: var(--font-mono);
+		color: var(--gray-400);
+		margin-bottom: 1.5rem;
+		transition: color 0.3s ease;
+	}
+
+	.option:hover .option-desc {
+		color: var(--gray-300);
+	}
+
+	.option-cta {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 700;
+		font-size: 0.875rem;
+		color: var(--white);
+		transition: color 0.3s ease;
+	}
+
+	.option:hover .option-cta {
+		color: var(--gray-200);
+	}
+
+	.option-cta :global(svg) {
+		transition: transform 0.3s ease;
+	}
+
+	.option:hover .option-cta :global(svg) {
+		transform: translateX(0.25rem);
+	}
+
+	/* Principles row */
+	.principles {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 2rem;
+		margin-top: 6rem;
+		padding-top: 3rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.principle-title {
+		font-size: 1.5rem;
+		font-weight: 900;
+		margin-bottom: 0.5rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.principle-title :global(svg) {
+		color: var(--gray-500);
+	}
+
+	.principle-label {
+		font-size: 0.75rem;
+		color: var(--gray-500);
+		font-family: var(--font-mono);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+	}
+
+	/* Footer line */
+	.site-footer {
+		margin-top: 4rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		text-align: center;
+		font-size: 0.625rem;
+		color: var(--gray-500);
+		font-family: var(--font-mono);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	@media (min-width: 768px) {
+		.contact-title {
+			font-size: 6rem;
+		}
+		.principle-title {
+			font-size: 1.875rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.contact-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

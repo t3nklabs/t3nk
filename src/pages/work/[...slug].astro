@@ -82,10 +82,10 @@ const pageTitle = !isFeed ? props.entry.data.title : props.active === 'all' ? 'W
 >
 	{
 		isFeed ? (
-			<div class="pt-24 min-h-screen bg-gray-50">
-				<div class="max-w-7xl mx-auto px-6 mb-10 text-center pt-6">
-					<h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">WORK</h1>
-					<p class="text-xl text-gray-500 font-mono">{props.subtitle}</p>
+			<div class="work-page">
+				<div class="work-head">
+					<h1 class="work-title">WORK</h1>
+					<p class="work-sub">{props.subtitle}</p>
 				</div>
 				<WorkFeed entries={props.entries} active={props.active} />
 			</div>
@@ -98,3 +98,37 @@ const pageTitle = !isFeed ? props.entry.data.title : props.active === 'all' ? 'W
 		)
 	}
 </Layout>
+
+<style>
+	.work-page {
+		padding-top: 6rem;
+		min-height: 100vh;
+		background: var(--gray-50);
+	}
+
+	.work-head {
+		max-width: 80rem;
+		margin: 0 auto 2.5rem;
+		padding: 1.5rem 1.5rem 0;
+		text-align: center;
+	}
+
+	.work-title {
+		font-size: 2.25rem;
+		font-weight: 900;
+		margin-bottom: 1rem;
+		letter-spacing: -0.025em;
+	}
+
+	.work-sub {
+		font-size: 1.25rem;
+		color: var(--gray-500);
+		font-family: var(--font-mono);
+	}
+
+	@media (min-width: 768px) {
+		.work-title {
+			font-size: 3.75rem;
+		}
+	}
+</style>

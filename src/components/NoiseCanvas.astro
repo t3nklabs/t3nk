@@ -2,10 +2,7 @@
 // Ported from t3nk-old NoiseCanvas.vue — fullscreen animated noise overlay.
 ---
 
-<canvas
-	data-noise
-	class="fixed inset-0 w-full h-full pointer-events-none opacity-[0.03] z-[9999] mix-blend-overlay"
-	aria-hidden="true"></canvas>
+<canvas data-noise class="noise-overlay" aria-hidden="true"></canvas>
 
 <script>
 	const canvas = document.querySelector<HTMLCanvasElement>('[data-noise]');
@@ -38,3 +35,16 @@
 	window.addEventListener('resize', resize);
 	drawNoise();
 </script>
+
+<style>
+	.noise-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		width: 100%;
+		height: 100%;
+		opacity: 0.03;
+		mix-blend-mode: overlay;
+		pointer-events: none;
+	}
+</style>

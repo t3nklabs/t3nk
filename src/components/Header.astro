@@ -16,29 +16,113 @@ const isActive = (path: string) => {
 };
 ---
 
-<header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-	<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-		<a href={url()} class="text-xl font-black tracking-tighter bg-black text-white px-2 py-1">T3NK</a>
+<header class="site-header">
+	<div class="header-inner">
+		<a href={url()} class="logo">T3NK</a>
 
-		<nav class="hidden md:flex items-center gap-8 font-mono text-sm font-medium">
+		<nav class="header-nav">
 			{
 				links.map((link) => (
 					<a
 						href={url(link.path)}
 						aria-current={isActive(link.path) ? 'page' : undefined}
-						class:list={['transition-colors', isActive(link.path) ? 'border-b-2 border-black' : 'hover:text-gray-500']}
+						class:list={['nav-link', { 'is-active': isActive(link.path) }]}
 					>
 						{link.label}
 					</a>
 				))
 			}
-			<a href={url('pitch')} class="bg-black text-white px-4 py-2 hover:bg-gray-800 transition-colors">
+			<a href={url('pitch')} class="pitch-cta">
 				PITCH US
 			</a>
 		</nav>
 
-		<a href={url('pitch')} class="md:hidden text-sm font-bold border-b-2 border-black">
+		<a href={url('pitch')} class="pitch-cta-mobile">
 			PITCH US
 		</a>
 	</div>
 </header>
+
+<style>
+	.site-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 50;
+		background: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--gray-100);
+	}
+
+	.header-inner {
+		max-width: 80rem;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+		height: 4rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.logo {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+		font-weight: 900;
+		letter-spacing: -0.05em;
+		background: var(--black);
+		color: var(--white);
+		padding: 0.25rem 0.5rem;
+	}
+
+	.header-nav {
+		display: none; /* shown from md up */
+		align-items: center;
+		gap: 2rem;
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	.nav-link {
+		transition: color 0.15s ease;
+		border-bottom: 2px solid transparent;
+	}
+
+	.nav-link:hover {
+		color: var(--gray-500);
+	}
+
+	.nav-link.is-active {
+		border-bottom-color: var(--black);
+	}
+
+	.pitch-cta {
+		background: var(--black);
+		color: var(--white);
+		padding: 0.5rem 1rem;
+		transition: background-color 0.15s ease;
+	}
+
+	.pitch-cta:hover {
+		background: var(--gray-800);
+	}
+
+	.pitch-cta-mobile {
+		display: block;
+		font-size: 0.875rem;
+		font-weight: 700;
+		border-bottom: 2px solid var(--black);
+	}
+
+	/* Desktop nav (md and up) */
+	@media (min-width: 768px) {
+		.header-nav {
+			display: flex;
+		}
+		.pitch-cta-mobile {
+			display: none;
+		}
+	}
+</style>

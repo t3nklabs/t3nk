@@ -12,54 +12,52 @@ const standards = [
 ];
 ---
 
-<section id="standards" class="relative py-32 bg-gray-50 text-black px-6">
-	<div class="max-w-7xl mx-auto">
-		<div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+<section id="standards" class="standards">
+	<div class="container">
+		<div class="standards-grid">
 			<div>
-				<span class="font-mono text-sm tracking-wider uppercase text-white bg-black px-2 py-1">Engineering Standards</span>
-				<h2 class="text-5xl font-sans font-black mt-6 mb-8 uppercase leading-tight">
+				<span class="standards-badge">Engineering Standards</span>
+				<h2 class="standards-title">
 					We build what<br />
-					<span class="text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-500">we back.</span>
+					<span class="fade-text">we back.</span>
 				</h2>
-				<div class="space-y-6 text-lg text-gray-700 font-sans">
+				<div class="standards-copy">
 					<p>Our engineers work in the same repository as your team. That changes what gets built and how.</p>
 					<p>
 						We review architecture before it hardens, review code before it ships, and leave documentation your
 						team can use.
 					</p>
-					<p class="font-bold">No handoff. No black box.</p>
+					<p class="standards-strong">No handoff. No black box.</p>
 				</div>
 			</div>
 
-			<div class="bg-black text-white p-8 font-mono rounded-lg shadow-2xl overflow-hidden relative border border-gray-800">
-				<div class="absolute top-0 left-0 right-0 h-8 bg-[#111] border-b border-gray-800 flex items-center px-4 gap-2">
-					<div class="w-3 h-3 rounded-full bg-gray-700"></div>
-					<div class="w-3 h-3 rounded-full bg-gray-700"></div>
-					<div class="w-3 h-3 rounded-full bg-gray-700"></div>
-					<span class="ml-4 text-xs text-gray-500">engineering-standards — zsh</span>
+			<div class="terminal">
+				<div class="terminal-bar">
+					<div class="terminal-dot"></div>
+					<div class="terminal-dot"></div>
+					<div class="terminal-dot"></div>
+					<span class="terminal-label">engineering-standards — zsh</span>
 				</div>
 
-				<div class="mt-8 space-y-6">
-					<div class="text-gray-500 uppercase tracking-widest text-xs border-b border-gray-800 pb-2">
-						// In the repo from day one
-					</div>
+				<div class="terminal-body">
+					<div class="terminal-caption">// In the repo from day one</div>
 
-					<ul class="space-y-3">
+					<ul class="standards-list">
 						{
 							standards.map((item) => (
-								<li class="flex items-start gap-3 text-sm text-gray-300">
-									<Icon name="check" size={16} class="mt-0.5 text-green-500 shrink-0" aria-hidden="true" />
+								<li class="standards-item">
+									<span class="check">
+										<Icon name="check" size={16} aria-hidden="true" />
+									</span>
 									<span>{item}</span>
 								</li>
 							))
 						}
 					</ul>
 
-					<div class="text-gray-500 uppercase tracking-widest text-xs border-b border-gray-800 pb-2 pt-2">
-						// What we don't do
-					</div>
+					<div class="terminal-caption terminal-caption-gap">// What we don't do</div>
 
-					<ul class="space-y-3 text-sm text-gray-500">
+					<ul class="not-list">
 						<li>Ship a prototype and disappear.</li>
 						<li>Sell an audit we should have done during the build.</li>
 						<li>Guarantee outcomes we do not control.</li>
@@ -68,25 +66,206 @@ const standards = [
 			</div>
 		</div>
 
-		<div class="grid md:grid-cols-3 gap-8 mt-16">
-			<div class="bg-white p-8 border border-gray-200 shadow-sm">
-				<h3 class="font-bold font-sans text-xl mb-3 uppercase">Code you can own</h3>
-				<p class="text-gray-600 text-sm leading-relaxed">
+		<div class="standards-cards">
+			<div class="card">
+				<h3 class="card-title">Code you can own</h3>
+				<p class="card-text">
 					Your team gets the architecture, documentation, and context to maintain the system without us.
 				</p>
 			</div>
-			<div class="bg-white p-8 border border-gray-200 shadow-sm">
-				<h3 class="font-bold font-sans text-xl mb-3 uppercase">Security from day one</h3>
-				<p class="text-gray-600 text-sm leading-relaxed">
-					Threat modeling and code review are part of the build, not a post-launch audit.
-				</p>
+			<div class="card">
+				<h3 class="card-title">Security from day one</h3>
+				<p class="card-text">Threat modeling and code review are part of the build, not a post-launch audit.</p>
 			</div>
-			<div class="bg-white p-8 border border-gray-200 shadow-sm">
-				<h3 class="font-bold font-sans text-xl mb-3 uppercase">We stay involved</h3>
-				<p class="text-gray-600 text-sm leading-relaxed">
-					We work through the first scaling problems, not just the first release.
-				</p>
+			<div class="card">
+				<h3 class="card-title">We stay involved</h3>
+				<p class="card-text">We work through the first scaling problems, not just the first release.</p>
 			</div>
 		</div>
 	</div>
 </section>
+
+<style>
+	.standards {
+		position: relative;
+		padding: 8rem 1.5rem;
+		background: var(--gray-50);
+		color: var(--black);
+	}
+
+	.standards-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 4rem;
+		align-items: center;
+		margin-bottom: 5rem;
+	}
+
+	.standards-badge {
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: var(--white);
+		background: var(--black);
+		padding: 0.25rem 0.5rem;
+	}
+
+	.standards-title {
+		font-family: var(--font-sans);
+		font-size: 3rem;
+		font-weight: 900;
+		margin: 1.5rem 0 2rem;
+		text-transform: uppercase;
+		line-height: 1.25;
+	}
+
+	.fade-text {
+		color: transparent;
+		background-image: linear-gradient(to right, var(--black), var(--gray-500));
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+
+	.standards-copy > * + * {
+		margin-top: 1.5rem;
+	}
+
+	.standards-copy p {
+		font-size: 1.125rem;
+		color: var(--gray-700);
+		font-family: var(--font-sans);
+	}
+
+	.standards-strong {
+		font-weight: 700;
+	}
+
+	/* Terminal card */
+	.terminal {
+		position: relative;
+		background: var(--black);
+		color: var(--white);
+		padding: 2rem;
+		font-family: var(--font-mono);
+		border-radius: 0.5rem;
+		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+		overflow: hidden;
+		border: 1px solid var(--gray-800);
+	}
+
+	.terminal-bar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 2rem;
+		background: #111;
+		border-bottom: 1px solid var(--gray-800);
+		display: flex;
+		align-items: center;
+		padding: 0 1rem;
+		gap: 0.5rem;
+	}
+
+	.terminal-dot {
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: 50%;
+		background: var(--gray-700);
+	}
+
+	.terminal-label {
+		margin-left: 1rem;
+		font-size: 0.75rem;
+		color: var(--gray-500);
+	}
+
+	.terminal-body {
+		margin-top: 2rem;
+	}
+
+	.terminal-body > * + * {
+		margin-top: 1.5rem;
+	}
+
+	.terminal-caption {
+		color: var(--gray-500);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.75rem;
+		border-bottom: 1px solid var(--gray-800);
+		padding-bottom: 0.5rem;
+	}
+
+	.terminal-caption-gap {
+		padding-top: 0.5rem;
+	}
+
+	.standards-list > * + * {
+		margin-top: 0.75rem;
+	}
+
+	.standards-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		font-size: 0.875rem;
+		color: #d1d5db;
+	}
+
+	.check {
+		margin-top: 0.125rem;
+		color: #22c55e;
+		flex-shrink: 0;
+	}
+
+	.not-list > * + * {
+		margin-top: 0.75rem;
+	}
+
+	.not-list {
+		font-size: 0.875rem;
+		color: var(--gray-500);
+	}
+
+	/* Bottom cards */
+	.standards-cards {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		margin-top: 4rem;
+	}
+
+	.card {
+		background: var(--white);
+		padding: 2rem;
+		border: 1px solid var(--gray-200);
+		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	}
+
+	.card-title {
+		font-weight: 700;
+		font-size: 1.25rem;
+		margin-bottom: 0.75rem;
+		text-transform: uppercase;
+	}
+
+	.card-text {
+		color: var(--gray-600);
+		font-size: 0.875rem;
+		line-height: 1.625;
+	}
+
+	@media (min-width: 768px) {
+		.standards-cards {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.standards-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

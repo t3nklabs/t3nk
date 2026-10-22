@@ -1,42 +1,162 @@
 ---
 // Ported from t3nk-old ProcessSection.vue — four-step dark timeline.
+const steps = [
+	['01', 'Thesis', 'We pressure-test the problem, the market, and the technical approach before we invest.'],
+	['02', 'Prototype', 'We build a working MVP with your team. The goal is a product early users can try, not a deck.'],
+	['03', 'Harden', 'We put the fundamentals in place: tests, CI/CD, observability, security, and documentation.'],
+	['04', 'Scale', 'We stay involved through hiring, fundraising, and the first scaling problems.'],
+];
 ---
 
-<section class="bg-neutral-950 py-24 px-6 relative overflow-hidden">
+<section class="process">
 	<!-- Background element -->
-	<div
-		class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-900/50 via-neutral-950/0 to-neutral-950/0 pointer-events-none"
-	></div>
+	<div class="process-glow"></div>
 
-	<div class="max-w-7xl mx-auto relative z-10">
-		<div class="mb-20">
-			<h2 class="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">FROM ZERO TO <br />REVENUE.</h2>
-			<p class="text-neutral-400 max-w-2xl text-lg">
+	<div class="container relative">
+		<div class="process-head">
+			<h2 class="process-title">FROM ZERO TO <br />REVENUE.</h2>
+			<p class="process-sub">
 				We are engineers before we are investors. The process is built around getting software into users'
 				hands.
 			</p>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+		<div class="process-grid">
 			<!-- Connecting Line (Desktop) -->
-			<div class="hidden lg:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-neutral-800 via-neutral-700 to-neutral-800 -z-10"></div>
+			<div class="process-line"></div>
 
 			{
-				[
-					['01', 'Thesis', 'We pressure-test the problem, the market, and the technical approach before we invest.'],
-					['02', 'Prototype', 'We build a working MVP with your team. The goal is a product early users can try, not a deck.'],
-					['03', 'Harden', 'We put the fundamentals in place: tests, CI/CD, observability, security, and documentation.'],
-					['04', 'Scale', 'We stay involved through hiring, fundraising, and the first scaling problems.'],
-				].map(([num, title, desc]) => (
-					<div class="group relative">
-						<div class="w-24 h-24 bg-neutral-900 rounded-2xl border border-neutral-800 flex items-center justify-center mb-8 group-hover:border-white/40 group-hover:bg-neutral-900/80 transition-all duration-300 shadow-lg shadow-black/50">
-							<span class="text-4xl font-mono font-bold text-neutral-700 group-hover:text-white transition-colors">{num}</span>
+				steps.map(([num, title, desc]) => (
+					<div class="step">
+						<div class="step-box">
+							<span class="step-num">{num}</span>
 						</div>
-						<h3 class="text-xl font-bold text-white mb-3">{title}</h3>
-						<p class="text-neutral-500 text-sm leading-relaxed">{desc}</p>
+						<h3 class="step-title">{title}</h3>
+						<p class="step-desc">{desc}</p>
 					</div>
 				))
 			}
 		</div>
 	</div>
 </section>
+
+<style>
+	.process {
+		background: var(--neutral-950);
+		padding: 6rem 1.5rem;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.process-glow {
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(circle at center, rgba(23, 23, 23, 0.5), rgba(10, 10, 10, 0) 70%);
+		pointer-events: none;
+	}
+
+	.process .container {
+		position: relative;
+		z-index: 10;
+	}
+
+	.process-head {
+		margin-bottom: 5rem;
+	}
+
+	.process-title {
+		font-size: 2.25rem;
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+		color: var(--white);
+		letter-spacing: -0.025em;
+	}
+
+	.process-sub {
+		color: #a3a3a3;
+		max-width: 42rem;
+		font-size: 1.125rem;
+	}
+
+	.process-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		position: relative;
+	}
+
+	.step {
+		position: relative;
+	}
+
+	.step-box {
+		width: 6rem;
+		height: 6rem;
+		background: var(--neutral-900);
+		border-radius: 1rem;
+		border: 1px solid var(--neutral-800);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 2rem;
+		transition: border-color 0.3s ease, background-color 0.3s ease;
+		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+	}
+
+	.step-num {
+		font-family: var(--font-mono);
+		font-size: 2.25rem;
+		font-weight: 700;
+		color: #404040;
+		transition: color 0.3s ease;
+	}
+
+	.step:hover .step-box {
+		border-color: rgba(255, 255, 255, 0.4);
+		background: rgba(23, 23, 23, 0.8);
+	}
+
+	.step:hover .step-num {
+		color: var(--white);
+	}
+
+	.step-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: var(--white);
+		margin-bottom: 0.75rem;
+	}
+
+	.step-desc {
+		color: #737373;
+		font-size: 0.875rem;
+		line-height: 1.625;
+	}
+
+	/* Connecting line, desktop only */
+	.process-line {
+		display: none;
+		position: absolute;
+		top: 3rem;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: linear-gradient(to right, var(--neutral-800), #404040, var(--neutral-800));
+		z-index: -1;
+	}
+
+	@media (min-width: 768px) {
+		.process-title {
+			font-size: 3rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.process-grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+		.process-line {
+			display: block;
+		}
+	}
+</style>

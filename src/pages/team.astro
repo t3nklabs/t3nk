@@ -4,11 +4,44 @@ import Team from '../components/sections/Team.astro';
 ---
 
 <Layout title="The Team" description="The engineers and operators behind T3NK">
-	<div class="pt-24 min-h-screen bg-white">
-		<div class="max-w-7xl mx-auto px-6 mb-12 text-center">
-			<h1 class="text-4xl md:text-6xl font-black mb-4">THE TEAM</h1>
-			<p class="text-xl text-gray-600 font-mono">The engineers and operators behind T3NK</p>
+	<div class="page-light">
+		<div class="page-head">
+			<h1 class="page-title">THE TEAM</h1>
+			<p class="page-sub">The engineers and operators behind T3NK</p>
 		</div>
 		<Team />
 	</div>
 </Layout>
+
+<style>
+	.page-light {
+		padding-top: 6rem;
+		min-height: 100vh;
+		background: var(--white);
+	}
+
+	.page-head {
+		max-width: 80rem;
+		margin: 0 auto 3rem;
+		padding: 0 1.5rem;
+		text-align: center;
+	}
+
+	.page-title {
+		font-size: 2.25rem;
+		font-weight: 900;
+		margin-bottom: 1rem;
+	}
+
+	.page-sub {
+		font-size: 1.25rem;
+		color: var(--gray-600);
+		font-family: var(--font-mono);
+	}
+
+	@media (min-width: 768px) {
+		.page-title {
+			font-size: 3.75rem;
+		}
+	}
+</style>

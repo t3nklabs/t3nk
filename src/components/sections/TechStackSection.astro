@@ -20,38 +20,33 @@ const row2 = [
 	{ name: 'Ansible', slug: 'ansible' },
 	{ name: 'Prometheus', slug: 'prometheus' },
 	{ name: 'Grafana', slug: 'grafana' },
-	{ name: 'Tailwind', slug: 'tailwindcss' },
 	{ name: 'Vue.js', slug: 'vuedotjs' },
 	{ name: 'React', slug: 'react' },
 ];
 ---
 
-<section class="py-24 bg-white border-b border-gray-100 overflow-hidden">
-	<div class="max-w-7xl mx-auto px-6 mb-12 text-center">
-		<span class="font-mono text-sm tracking-widest uppercase text-gray-400">How we build</span>
-		<h2 class="text-3xl md:text-5xl font-black mt-4 mb-4 text-black tracking-tight">THE STACK</h2>
-		<p class="font-mono text-sm text-gray-500">The tools we use to build and run what we back.</p>
+<section class="stack">
+	<div class="stack-head">
+		<span class="eyebrow stack-eyebrow">How we build</span>
+		<h2 class="stack-title">THE STACK</h2>
+		<p class="stack-sub">The tools we use to build and run what we back.</p>
 	</div>
 
 	{
 		[row1, row2].map((row, i) => (
-			<div class:list={['marquee-container', i === 0 && 'mb-8']}>
-				<div class:list={['marquee-content', i === 0 ? 'animate-scroll-left' : 'animate-scroll-right']}>
+			<div class:list={['marquee', i === 0 && 'marquee-gap']}>
+				<div class:list={['marquee-track', i === 0 ? 'scroll-left' : 'scroll-right']}>
 					{row.map((tech) => (
-						<div class="tech-item group">
-							<img src={`https://cdn.simpleicons.org/${tech.slug}/000000`} alt={tech.name} class="h-12 w-12 opacity-40 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0" />
-							<span class="font-mono text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white px-2 py-0.5 rounded">
-								{tech.name}
-							</span>
+						<div class="tech">
+							<img src={`https://cdn.simpleicons.org/${tech.slug}/000000`} alt={tech.name} class="tech-logo" />
+							<span class="tech-name">{tech.name}</span>
 						</div>
 					))}
 					{/* Duplicate for seamless loop */}
 					{row.map((tech) => (
-						<div class="tech-item group" aria-hidden="true">
-							<img src={`https://cdn.simpleicons.org/${tech.slug}/000000`} alt="" class="h-12 w-12 opacity-40 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0" />
-							<span class="font-mono text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white px-2 py-0.5 rounded">
-								{tech.name}
-							</span>
+						<div class="tech" aria-hidden="true">
+							<img src={`https://cdn.simpleicons.org/${tech.slug}/000000`} alt="" class="tech-logo" />
+							<span class="tech-name">{tech.name}</span>
 						</div>
 					))}
 				</div>
@@ -61,7 +56,41 @@ const row2 = [
 </section>
 
 <style>
-	.marquee-container {
+	.stack {
+		padding: 6rem 0;
+		background: var(--white);
+		border-bottom: 1px solid var(--gray-100);
+		overflow: hidden;
+	}
+
+	.stack-head {
+		max-width: 80rem;
+		margin: 0 auto 3rem;
+		padding: 0 1.5rem;
+		text-align: center;
+	}
+
+	.stack-eyebrow {
+		color: var(--gray-400);
+		font-size: 0.875rem;
+		letter-spacing: 0.1em;
+	}
+
+	.stack-title {
+		font-size: 1.875rem;
+		font-weight: 900;
+		margin: 1rem 0;
+		color: var(--black);
+		letter-spacing: -0.025em;
+	}
+
+	.stack-sub {
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		color: var(--gray-500);
+	}
+
+	.marquee {
 		width: 100%;
 		overflow: hidden;
 		position: relative;
@@ -70,18 +99,14 @@ const row2 = [
 		-webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 	}
 
-	.marquee-content {
+	.marquee-gap {
+		margin-bottom: 2rem;
+	}
+
+	.marquee-track {
 		display: flex;
 		gap: 4rem; /* Spacing between logos */
 		width: max-content;
-	}
-
-	.tech-item {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 1rem;
 	}
 
 	@keyframes scroll-left {
@@ -102,16 +127,64 @@ const row2 = [
 		}
 	}
 
-	.animate-scroll-left {
+	.scroll-left {
 		animation: scroll-left 30s linear infinite;
 	}
 
-	.animate-scroll-right {
+	.scroll-right {
 		animation: scroll-right 30s linear infinite;
 	}
 
 	/* Pause on hover for easier viewing */
-	.marquee-container:hover .marquee-content {
+	.marquee:hover .marquee-track {
 		animation-play-state: paused;
+	}
+
+	.tech {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+	}
+
+	.tech-logo {
+		height: 3rem;
+		width: 3rem;
+		opacity: 0.4;
+		filter: grayscale(100%);
+		transition: opacity 0.3s ease, filter 0.3s ease;
+	}
+
+	.tech:hover .tech-logo {
+		opacity: 1;
+		filter: grayscale(0);
+	}
+
+	.tech-name {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		margin-top: 0.5rem;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		position: absolute;
+		bottom: -1.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		white-space: nowrap;
+		background: var(--black);
+		color: var(--white);
+		padding: 0.125rem 0.5rem;
+		border-radius: 0.25rem;
+	}
+
+	.tech:hover .tech-name {
+		opacity: 1;
+	}
+
+	@media (min-width: 768px) {
+		.stack-title {
+			font-size: 3rem;
+		}
 	}
 </style>

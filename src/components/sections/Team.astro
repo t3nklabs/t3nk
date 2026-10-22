@@ -1,83 +1,167 @@
 ---
 // Ported from t3nk-old Team.vue — grayscale photo grid of the builders.
 import { asset } from '../../consts';
+
+const members = [
+	{
+		src: '/team/naman.png',
+		alt: 'Naman',
+		role: 'CEO & Founder',
+		desc: 'Founder and product engineer. Leads investments and works with portfolio companies on product, mobile, and the first version.',
+	},
+	{
+		src: '/team/aman.png',
+		alt: 'Aman Singh',
+		role: 'Senior Software Developer',
+		desc: 'Infrastructure and automation engineer. Builds deployment, observability, and the systems that keep products running.',
+	},
+	{
+		src: '/team/himanshu.png',
+		alt: 'Himanshu',
+		role: 'Project Manager',
+		desc: 'Runs delivery across portfolio companies. Keeps engineering, hiring, and timelines aligned.',
+	},
+];
 ---
 
-<section id="team" class="relative py-32 bg-white text-black px-6">
-	<div class="max-w-7xl mx-auto">
-		<div class="mb-20">
-			<span class="font-mono text-sm tracking-wider uppercase text-gray-500">03 / The team</span>
-			<h2 class="text-5xl font-sans font-black mt-4 mb-6">THE BUILDERS</h2>
-			<p class="font-sans text-xl text-gray-600 max-w-2xl">
-				A small team of engineers and operators. We work inside the companies we back.
-			</p>
+<section id="team" class="team">
+	<div class="container">
+		<div class="team-head">
+			<span class="eyebrow team-eyebrow">03 / The team</span>
+			<h2 class="team-title">THE BUILDERS</h2>
+			<p class="team-sub">A small team of engineers and operators. We work inside the companies we back.</p>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-			<div class="group">
-				<div class="relative overflow-hidden mb-6 bg-gray-100 aspect-[3/4]">
-					<img
-						src={asset('/team/naman.png')}
-						alt="Naman"
-						class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
-					/>
-					<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
-				</div>
+		<div class="team-grid">
+			{
+				members.map((member) => (
+					<div class="member">
+						<div class="member-photo">
+							<img src={asset(member.src)} alt={member.alt} class="member-img" />
+							<div class="member-shade"></div>
+						</div>
 
-				<div>
-					<div class="flex justify-between items-baseline mb-2">
-						<h3 class="font-sans font-bold text-2xl uppercase">Naman</h3>
+						<div>
+							<div class="member-head">
+								<h3 class="member-name">{member.alt}</h3>
+							</div>
+							<p class="member-role">{member.role}</p>
+							<p class="member-desc">{member.desc}</p>
+						</div>
 					</div>
-					<p class="font-mono text-sm text-gray-500 uppercase tracking-wider mb-4 border-b border-gray-200 pb-4">CEO &amp; Founder</p>
-					<p class="font-sans text-gray-600 leading-relaxed">
-						Founder and product engineer. Leads investments and works with portfolio companies on product, mobile,
-						and the first version.
-					</p>
-				</div>
-			</div>
-
-			<div class="group">
-				<div class="relative overflow-hidden mb-6 bg-gray-100 aspect-[3/4]">
-					<img
-						src={asset('/team/aman.png')}
-						alt="Aman Singh"
-						class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
-					/>
-					<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
-				</div>
-
-				<div>
-					<div class="flex justify-between items-baseline mb-2">
-						<h3 class="font-sans font-bold text-2xl uppercase">Aman Singh</h3>
-					</div>
-					<p class="font-mono text-sm text-gray-500 uppercase tracking-wider mb-4 border-b border-gray-200 pb-4">Senior Software Developer</p>
-					<p class="font-sans text-gray-600 leading-relaxed">
-						Infrastructure and automation engineer. Builds deployment, observability, and the systems that keep
-						products running.
-					</p>
-				</div>
-			</div>
-
-			<div class="group">
-				<div class="relative overflow-hidden mb-6 bg-gray-100 aspect-[3/4]">
-					<img
-						src={asset('/team/himanshu.png')}
-						alt="Himanshu"
-						class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
-					/>
-					<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
-				</div>
-
-				<div>
-					<div class="flex justify-between items-baseline mb-2">
-						<h3 class="font-sans font-bold text-2xl uppercase">Himanshu</h3>
-					</div>
-					<p class="font-mono text-sm text-gray-500 uppercase tracking-wider mb-4 border-b border-gray-200 pb-4">Project Manager</p>
-					<p class="font-sans text-gray-600 leading-relaxed">
-						Runs delivery across portfolio companies. Keeps engineering, hiring, and timelines aligned.
-					</p>
-				</div>
-			</div>
+				))
+			}
 		</div>
 	</div>
 </section>
+
+<style>
+	.team {
+		position: relative;
+		padding: 8rem 1.5rem;
+		background: var(--white);
+		color: var(--black);
+	}
+
+	.team-eyebrow {
+		color: var(--gray-500);
+		font-size: 0.875rem;
+		letter-spacing: 0.05em;
+	}
+
+	.team-title {
+		font-family: var(--font-sans);
+		font-size: 3rem;
+		font-weight: 900;
+		margin: 1rem 0 1.5rem;
+	}
+
+	.team-sub {
+		font-size: 1.25rem;
+		color: var(--gray-600);
+		max-width: 42rem;
+	}
+
+	.team-head {
+		margin-bottom: 5rem;
+	}
+
+	.team-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+	}
+
+	/* Reveal color photo on hover */
+	.member-photo {
+		position: relative;
+		overflow: hidden;
+		margin-bottom: 1.5rem;
+		background: var(--gray-100);
+		aspect-ratio: 3 / 4;
+	}
+
+	.member-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: grayscale(100%);
+		transition: filter 0.5s ease;
+	}
+
+	.member:hover .member-img {
+		filter: grayscale(0);
+	}
+
+	.member-shade {
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.1);
+		transition: background-color 0.3s ease;
+	}
+
+	.member:hover .member-shade {
+		background: transparent;
+	}
+
+	.member-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: 0.5rem;
+	}
+
+	.member-name {
+		font-weight: 700;
+		font-size: 1.5rem;
+		text-transform: uppercase;
+	}
+
+	.member-role {
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		color: var(--gray-500);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid var(--gray-200);
+		padding-bottom: 1rem;
+	}
+
+	.member-desc {
+		color: var(--gray-600);
+		line-height: 1.625;
+	}
+
+	@media (min-width: 768px) {
+		.team-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.team-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>

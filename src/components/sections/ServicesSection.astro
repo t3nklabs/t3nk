@@ -44,39 +44,37 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 ];
 ---
 
-<section id="services" class="relative py-32 bg-white text-black px-6">
-	<div class="max-w-7xl mx-auto">
-		<div class="mb-20">
-			<span class="font-mono text-sm tracking-wider uppercase text-gray-500">02 / Where we help</span>
-			<h2 class="text-5xl font-sans font-black mt-4 mb-6">WHAT WE BUILD</h2>
-			<p class="font-sans text-xl text-gray-600 max-w-2xl">
-				We work inside your team on the parts that decide whether the product ships.
-			</p>
+<section id="services" class="services">
+	<div class="container">
+		<div class="services-head">
+			<span class="eyebrow services-eyebrow">02 / Where we help</span>
+			<h2 class="services-title">WHAT WE BUILD</h2>
+			<p class="services-sub">We work inside your team on the parts that decide whether the product ships.</p>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200">
+		<div class="services-grid">
 			{
 				services.map((service, index) => (
-					<div class="bg-white p-8 group hover:bg-black hover:text-white transition-colors duration-300 min-h-[320px] flex flex-col justify-between">
+					<div class="service">
 						<div>
-							<div class="flex justify-between items-start mb-8">
-								<Icon name={service.icon} class="w-8 h-8" aria-hidden="true" />
-								<span class="font-mono text-sm opacity-50">0{index + 1}</span>
+							<div class="service-top">
+								<span class="service-icon">
+									<Icon name={service.icon} aria-hidden="true" />
+								</span>
+								<span class="service-index">{`0${index + 1}`}</span>
 							</div>
-							<h3 class="font-sans font-bold text-xl mb-4 group-hover:text-white">{service.title}</h3>
-							<p class="font-mono text-sm text-gray-600 mb-6 group-hover:text-gray-300 leading-relaxed">{service.desc}</p>
+							<h3 class="service-title">{service.title}</h3>
+							<p class="service-desc">{service.desc}</p>
 						</div>
 
-						<div class="space-y-4">
-							<div class="flex flex-wrap gap-2 text-xs font-mono">
+						<div class="service-tags">
+							<div class="service-pills">
 								{service.tags.map((tag) => (
-									<span class="border border-gray-200 px-2 py-1 rounded bg-gray-50 text-gray-600 group-hover:bg-gray-800 group-hover:text-gray-300 group-hover:border-gray-700">
-										{tag}
-									</span>
+									<span class="pill">{tag}</span>
 								))}
 							</div>
-							<div class="text-right opacity-0 group-hover:opacity-100 transition-opacity">
-								<span class="text-2xl">→</span>
+							<div class="service-arrow">
+								<span>→</span>
 							</div>
 						</div>
 					</div>
@@ -84,17 +82,217 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 			}
 		</div>
 
-		<div class="mt-16 flex flex-col md:flex-row items-center justify-between bg-black text-white p-8">
-			<div class="flex items-center gap-4 mb-6 md:mb-0">
-				<span class="w-2 h-2 bg-white rounded-full"></span>
-				<p class="font-mono font-bold">Every company we back gets our engineering team in the repo.</p>
+		<div class="services-banner">
+			<div class="services-banner-copy">
+				<span class="dot"></span>
+				<p>Every company we back gets our engineering team in the repo.</p>
 			</div>
-			<a
-				href={url('pitch')}
-				class="px-8 py-3 bg-white text-black font-bold font-mono hover:bg-gray-200 transition-colors uppercase"
-			>
+			<a href={url('pitch')} class="banner-cta">
 				Pitch your company →
 			</a>
 		</div>
 	</div>
 </section>
+
+<style>
+	.services {
+		position: relative;
+		padding: 8rem 1.5rem;
+		background: var(--white);
+		color: var(--black);
+	}
+
+	.services-head {
+		margin-bottom: 5rem;
+	}
+
+	.services-eyebrow {
+		color: var(--gray-500);
+		font-size: 0.875rem;
+		letter-spacing: 0.05em;
+	}
+
+	.services-title {
+		font-family: var(--font-sans);
+		font-size: 3rem;
+		font-weight: 900;
+		margin: 1rem 0 1.5rem;
+	}
+
+	.services-sub {
+		font-size: 1.25rem;
+		color: var(--gray-600);
+		max-width: 42rem;
+	}
+
+	/* 1px gaps rendered via background — gap-px trick */
+	.services-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1px;
+		background: var(--gray-200);
+		border: 1px solid var(--gray-200);
+	}
+
+	.service {
+		background: var(--white);
+		padding: 2rem;
+		min-height: 320px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		transition: background-color 0.3s ease, color 0.3s ease;
+	}
+
+	.service-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 2rem;
+	}
+
+	.service-icon :global(svg) {
+		width: 2rem;
+		height: 2rem;
+	}
+
+	.service-index {
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		opacity: 0.5;
+	}
+
+	.service-title {
+		font-weight: 700;
+		font-size: 1.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.service-desc {
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		color: var(--gray-600);
+		margin-bottom: 1.5rem;
+		line-height: 1.625;
+	}
+
+	.service-tags > * + * {
+		margin-top: 1rem;
+	}
+
+	.service-pills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		font-size: 0.75rem;
+		font-family: var(--font-mono);
+	}
+
+	.pill {
+		border: 1px solid var(--gray-200);
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.25rem;
+		background: var(--gray-50);
+		color: var(--gray-600);
+		transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+	}
+
+	.service-arrow {
+		text-align: right;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		font-size: 1.5rem;
+	}
+
+	.service .pill {
+		border-color: var(--gray-200);
+	}
+
+	/* Hover swap to black */
+	.service:hover {
+		background: var(--black);
+		color: var(--white);
+	}
+
+	.service:hover .service-title {
+		color: var(--white);
+	}
+
+	.service:hover .service-desc {
+		color: #d1d5db;
+	}
+
+	.service:hover .pill {
+		background: var(--gray-800);
+		color: #d1d5db;
+		border-color: var(--gray-700);
+	}
+
+	.service:hover .service-arrow {
+		opacity: 1;
+	}
+
+	.services-banner {
+		margin-top: 4rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		background: var(--black);
+		color: var(--white);
+		padding: 2rem;
+	}
+
+	.services-banner-copy {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		background: var(--white);
+		border-radius: 50%;
+		flex-shrink: 0;
+	}
+
+	.services-banner-copy p {
+		font-family: var(--font-mono);
+		font-weight: 700;
+	}
+
+	.banner-cta {
+		padding: 0.75rem 2rem;
+		background: var(--white);
+		color: var(--black);
+		font-weight: 700;
+		font-family: var(--font-mono);
+		transition: background-color 0.15s ease;
+		text-transform: uppercase;
+	}
+
+	.banner-cta:hover {
+		background: #e5e7eb;
+	}
+
+	/* Desktop */
+	@media (min-width: 768px) {
+		.services-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+		.services-banner {
+			flex-direction: row;
+		}
+		.services-banner-copy {
+			margin-bottom: 0;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.services-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>

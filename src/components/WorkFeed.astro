@@ -36,20 +36,15 @@ const feed =
 				: entries.filter((entry) => entry.data.tags.some((tag) => slugify(tag) === active));
 ---
 
-<div class="max-w-7xl mx-auto px-6 pb-32">
+<div class="container feed">
 	<!-- Tabs -->
-	<div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+	<div class="feed-tabs">
 		{
 			tabs.map((tab) => (
 				<a
 					href={tab.href}
 					aria-current={tab.slug === active ? 'true' : undefined}
-					class:list={[
-						'font-mono text-xs uppercase tracking-widest px-4 py-2 rounded-full border transition-colors',
-						tab.slug === active
-							? 'bg-black text-white border-black'
-							: 'border-gray-300 text-gray-600 hover:border-black hover:text-black',
-					]}
+					class:list={['feed-tab', { 'is-active': tab.slug === active }]}
 				>
 					{tab.label}
 				</a>
@@ -60,7 +55,7 @@ const feed =
 	<!-- Grid -->
 	{
 		feed.length ? (
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			<div class="feed-grid">
 				{feed.map((entry) => (
 					<WorkCard
 						entry={entry}
@@ -69,7 +64,71 @@ const feed =
 				))}
 			</div>
 		) : (
-			<div class="border border-gray-200 p-8 font-mono text-sm text-gray-500">Selected work will be listed here.</div>
+			<div class="feed-empty">Selected work will be listed here.</div>
 		)
 	}
 </div>
+
+<style>
+	.feed {
+		padding-bottom: 8rem;
+	}
+
+	.feed-tabs {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-bottom: 3rem;
+	}
+
+	.feed-tab {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		padding: 0.5rem 1rem;
+		border-radius: 9999px;
+		border: 1px solid var(--gray-300);
+		color: var(--gray-600);
+		transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+	}
+
+	.feed-tab:hover {
+		border-color: var(--black);
+		color: var(--black);
+	}
+
+	.feed-tab.is-active {
+		background: var(--black);
+		color: var(--white);
+		border-color: var(--black);
+	}
+
+	.feed-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	.feed-empty {
+		border: 1px solid var(--gray-200);
+		padding: 2rem;
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		color: var(--gray-500);
+	}
+
+	@media (min-width: 768px) {
+		.feed-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.feed-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>

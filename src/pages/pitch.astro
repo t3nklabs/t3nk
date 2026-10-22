@@ -4,47 +4,148 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Pitch Us" description="We back technical founders building software that has to work.">
-	<div class="pt-32 min-h-screen bg-black text-white px-6 pb-24">
-		<div class="max-w-4xl mx-auto text-center">
-			<div class="mb-12">
-				<h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-8">PITCH US</h1>
-				<p class="text-2xl font-mono text-gray-400">
-					We back technical founders building software that has to work.
-				</p>
+	<div class="pitch">
+		<div class="pitch-inner">
+			<div class="pitch-head">
+				<h1 class="pitch-title">PITCH US</h1>
+				<p class="pitch-sub">We back technical founders building software that has to work.</p>
 			</div>
 
-			<div class="bg-white/10 backdrop-blur-md p-12 rounded-2xl border border-white/20">
-				<p class="text-xl mb-8">Send a short note, your deck, and a link to the product or repo:</p>
-				<a
-					href="mailto:vc@t3nk.com"
-					class="text-4xl md:text-6xl font-bold bg-white text-black px-6 py-4 inline-block hover:scale-105 transition-transform"
-				>
-					vc@t3nk.com
-				</a>
-				<p class="mt-8 text-sm text-gray-500 font-mono">
+			<div class="pitch-card">
+				<p class="pitch-lead">Send a short note, your deck, and a link to the product or repo:</p>
+				<a href="mailto:vc@t3nk.com" class="pitch-mail">vc@t3nk.com</a>
+				<p class="pitch-note">
 					Tell us what you're building, who uses it, and what you need. We read every pitch and reply when there's
 					a fit.
 				</p>
 			</div>
 
-			<div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-				<div class="p-6 border border-gray-800 rounded-lg">
-					<h3 class="text-xl font-bold mb-4">Capital</h3>
-					<p class="text-gray-400">Pre-seed to Series A. We invest in software companies with technical founders.</p>
+			<div class="pitch-cols">
+				<div class="pitch-col">
+					<h3 class="pitch-col-title">Capital</h3>
+					<p class="pitch-col-text">Pre-seed to Series A. We invest in software companies with technical founders.</p>
 				</div>
-				<div class="p-6 border border-gray-800 rounded-lg">
-					<h3 class="text-xl font-bold mb-4">Engineering</h3>
-					<p class="text-gray-400">Our engineers join your repo and help you ship the next version.</p>
+				<div class="pitch-col">
+					<h3 class="pitch-col-title">Engineering</h3>
+					<p class="pitch-col-text">Our engineers join your repo and help you ship the next version.</p>
 				</div>
-				<div class="p-6 border border-gray-800 rounded-lg">
-					<h3 class="text-xl font-bold mb-4">Mentorship</h3>
-					<p class="text-gray-400">Architecture, security, hiring, and the parts that don't fit in a deck.</p>
+				<div class="pitch-col">
+					<h3 class="pitch-col-title">Mentorship</h3>
+					<p class="pitch-col-text">Architecture, security, hiring, and the parts that don't fit in a deck.</p>
 				</div>
 			</div>
 
-			<p class="mt-12 text-sm text-gray-500 font-mono">
-				What to send: the problem, the product, the team, and what you need.
-			</p>
+			<p class="pitch-footer">What to send: the problem, the product, the team, and what you need.</p>
 		</div>
 	</div>
 </Layout>
+
+<style>
+	.pitch {
+		padding: 8rem 1.5rem 6rem;
+		min-height: 100vh;
+		background: var(--black);
+		color: var(--white);
+	}
+
+	.pitch-inner {
+		max-width: 56rem;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.pitch-head {
+		margin-bottom: 3rem;
+	}
+
+	.pitch-title {
+		font-size: 3.75rem;
+		font-weight: 900;
+		letter-spacing: -0.05em;
+		margin-bottom: 2rem;
+	}
+
+	.pitch-sub {
+		font-size: 1.5rem;
+		font-family: var(--font-mono);
+		color: var(--gray-400);
+	}
+
+	.pitch-card {
+		background: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		padding: 3rem;
+		border-radius: 1rem;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.pitch-lead {
+		font-size: 1.25rem;
+		margin-bottom: 2rem;
+	}
+
+	.pitch-mail {
+		display: inline-block;
+		font-size: 2.25rem;
+		font-weight: 700;
+		background: var(--white);
+		color: var(--black);
+		padding: 1rem 1.5rem;
+		transition: transform 0.15s ease;
+	}
+
+	.pitch-mail:hover {
+		transform: scale(1.05);
+	}
+
+	.pitch-note {
+		margin-top: 2rem;
+		font-size: 0.875rem;
+		color: var(--gray-500);
+		font-family: var(--font-mono);
+	}
+
+	.pitch-cols {
+		margin-top: 6rem;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		text-align: left;
+	}
+
+	.pitch-col {
+		padding: 1.5rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 0.5rem;
+	}
+
+	.pitch-col-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+
+	.pitch-col-text {
+		color: var(--gray-400);
+	}
+
+	.pitch-footer {
+		margin-top: 3rem;
+		font-size: 0.875rem;
+		color: var(--gray-500);
+		font-family: var(--font-mono);
+	}
+
+	@media (min-width: 768px) {
+		.pitch-title {
+			font-size: 6rem;
+		}
+		.pitch-mail {
+			font-size: 3.75rem;
+		}
+		.pitch-cols {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+</style>
