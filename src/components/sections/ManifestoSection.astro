@@ -14,7 +14,7 @@ const tenets = [
 			<div>
 				<h2 class="manifesto-title">
 					LESS NARRATIVE.<br />
-					<span class="muted">MORE SOFTWARE.</span>
+					<span class="manifesto-muted">MORE SOFTWARE.</span>
 				</h2>
 				<p class="manifesto-text">
 					Venture rewards the story more often than the system. We do the opposite: we invest in teams that
@@ -26,15 +26,15 @@ const tenets = [
 			</div>
 
 			<!-- Right: The Core Tenets -->
-			<div class="tenets">
+			<div class="manifesto-tenets">
 				{
 					tenets.map(([num, title, desc]) => (
-						<div class="tenet">
-							<h3 class="tenet-title">
-								<span class="tenet-num">{num}</span>
+						<div class="manifesto-tenet">
+							<h3 class="manifesto-tenet-title">
+								<span class="manifesto-tenet-num">{num}</span>
 								{title}
 							</h3>
-							<p class="tenet-desc">{desc}</p>
+							<p class="manifesto-tenet-desc">{desc}</p>
 						</div>
 					))
 				}
@@ -67,7 +67,7 @@ const tenets = [
 		line-height: 1.25;
 	}
 
-	.muted {
+	.manifesto-muted {
 		color: #737373;
 	}
 
@@ -82,44 +82,44 @@ const tenets = [
 		margin-top: 1.5rem;
 	}
 
-	.tenets > * + * {
+	.manifesto-tenets > * + * {
 		margin-top: 2rem;
 	}
 
-	.tenet {
+	.manifesto-tenet {
 		border-left: 2px solid var(--neutral-800);
 		padding-left: 1.5rem;
 		transition: border-color 0.3s ease;
 	}
 
-	.tenet-title {
+	.manifesto-tenet-title {
 		font-size: 1.5rem;
 		font-weight: 700;
 		margin-bottom: 0.5rem;
 		transition: color 0.3s ease;
 	}
 
-	.tenet-num {
+	.manifesto-tenet-num {
 		color: #525252;
 		margin-right: 0.5rem;
 		transition: color 0.3s ease;
 	}
 
-	.tenet-desc {
+	.manifesto-tenet-desc {
 		color: #737373;
 		transition: color 0.3s ease;
 	}
 
-	.tenet:hover {
+	.manifesto-tenet:hover {
 		border-left-color: var(--white);
 	}
 
-	.tenet:hover .tenet-title,
-	.tenet:hover .tenet-num {
+	.manifesto-tenet:hover .manifesto-tenet-title,
+	.manifesto-tenet:hover .manifesto-tenet-num {
 		color: var(--white);
 	}
 
-	.tenet:hover .tenet-desc {
+	.manifesto-tenet:hover .manifesto-tenet-desc {
 		color: #d4d4d4;
 	}
 
