@@ -32,14 +32,7 @@ const isActive = (path: string) => {
 					</a>
 				))
 			}
-			<a href={url('pitch')} class="header-cta">
-				PITCH US
-			</a>
 		</nav>
-
-		<a href={url('pitch')} class="header-cta-mobile">
-			PITCH US
-		</a>
 	</div>
 </header>
 
@@ -98,31 +91,10 @@ const isActive = (path: string) => {
 		border-bottom-color: var(--black);
 	}
 
-	.header-cta {
-		background: var(--black);
-		color: var(--white);
-		padding: 0.5rem 1rem;
-		transition: background-color 0.15s ease;
-	}
-
-	.header-cta:hover {
-		background: var(--gray-800);
-	}
-
-	.header-cta-mobile {
-		display: block;
-		font-size: 0.875rem;
-		font-weight: 700;
-		border-bottom: 2px solid var(--black);
-	}
-
 	/* Desktop nav (md and up) */
 	@media (min-width: 768px) {
 		.header-nav {
 			display: flex;
-		}
-		.header-cta-mobile {
-			display: none;
 		}
 	}
 </style>
