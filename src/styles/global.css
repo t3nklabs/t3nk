@@ -116,6 +116,20 @@ body {
   max-width: 48rem;
 }
 
+/* Gradient fade-out text. Default is for dark backgrounds
+   (white to gray); .fade-text-light is for light backgrounds
+   (black to gray). */
+.fade-text {
+	color: transparent;
+	background-image: linear-gradient(to right, var(--white), var(--gray-400), var(--gray-600));
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+
+.fade-text-light {
+	background-image: linear-gradient(to right, var(--black), var(--gray-500));
+}
+
 /* Eyebrow label: mono, small caps, wide tracking */
 .eyebrow {
   font-family: var(--font-mono);
