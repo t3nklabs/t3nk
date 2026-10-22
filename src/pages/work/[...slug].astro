@@ -9,6 +9,7 @@ import Layout from '../../layouts/Layout.astro';
 import WorkFeed from '../../components/WorkFeed.astro';
 import EntryDetail from '../../components/work/EntryDetail.astro';
 import { slugify, byOrder, byDateDesc } from '../../lib/work';
+import { url } from '../../consts';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -74,12 +75,53 @@ type Props = FeedProps | DetailProps;
 const props = Astro.props as Props;
 const isFeed = props.kind === 'feed';
 const pageTitle = !isFeed ? props.entry.data.title : props.active === 'all' ? 'Work' : `${props.active} — Work`;
+const description = !isFeed
+	? props.entry.data.desc
+	: 'Products and open-source tools built by the T3NK team — projects, updates and the changelog behind them.';
+
+// Structured data for detail pages, matching the organization defined in BaseHead.
+const siteURL = new URL('/', Astro.site).toString();
+const tagToCategory = {
+	TOOL: 'UtilitiesApplication',
+	WEB3: 'WebApplication',
+	PRIVACY: 'SecurityApplication',
+	'AI/ML': 'AIApplication',
+} as const;
+const schemaJSON =
+	props.kind === 'detail'
+		? JSON.stringify(
+				props.entry.data.kind === 'project'
+					? {
+							'@context': 'https://schema.org',
+							'@type': 'SoftwareApplication',
+							name: props.entry.data.title,
+							description: props.entry.data.desc,
+							url: props.entry.data.url ?? new URL(url(`work/${props.entry.id}`), Astro.site).toString(),
+							sameAs: props.entry.data.url ? new URL(url(`work/${props.entry.id}`), Astro.site).toString() : undefined,
+							applicationCategory: tagToCategory[props.entry.data.tags[0]] ?? 'SoftwareApplication',
+							operatingSystem: 'Web',
+							author: { '@id': `${siteURL}#organization` },
+							publisher: { '@id': `${siteURL}#organization` },
+						}
+					: {
+							'@context': 'https://schema.org',
+							'@type': 'Article',
+							headline: props.entry.data.title,
+							description: props.entry.data.desc,
+							datePublished: props.entry.data.date,
+							author: { '@id': `${siteURL}#organization` },
+							publisher: { '@id': `${siteURL}#organization` },
+						},
+			)
+		: null;
 ---
 
 <Layout
 	title={pageTitle}
-	description="Products and open-source tools built by the T3NK team — projects, updates and the changelog behind them."
+	description={description}
+	ogType={isFeed ? 'website' : 'article'}
 >
+	{schemaJSON && <script is:inline type="application/ld+json" set:html={schemaJSON} />}
 	{
 		isFeed ? (
 			<div class="work-page">

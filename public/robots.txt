@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://t3nk.com/sitemap-index.xml

@@ -9,14 +9,16 @@ interface Props {
 	title?: string;
 	description?: string;
 	image?: string;
+	/** og:type — "website" everywhere, "article" on content pages. */
+	ogType?: 'website' | 'article';
 }
-const { title, description, image } = Astro.props;
+const { title, description, image, ogType } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={image} />
+		<BaseHead title={title} description={description} image={image} ogType={ogType} />
 	</head>
 	<body>
 		<NoiseCanvas />
