@@ -3,8 +3,10 @@
 // ProjectsSection.vue — but linking internally to /work/<slug>.
 import Icon from './Icon.astro';
 import FormattedDate from './FormattedDate.astro';
-import { url } from '../consts';
+import { url, asset } from '../consts';
 import type { CollectionEntry } from 'astro:content';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 interface Props {
 	entry: CollectionEntry<'work'>;
@@ -15,13 +17,29 @@ interface Props {
 const { entry, projectTitle } = Astro.props;
 const isProject = entry.data.kind === 'project';
 const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
+// Optional favicon rendered instead of the letter monogram, if committed to
+// public/favicons/<entry-id>.png.
+const hasFavicon = existsSync(join('public', 'favicons', `${entry.id}.png`));
 ---
 
 <a href={url(`work/${entry.id}`)} class="work-card">
 	<!-- Top Row: Mark and Link -->
 	<div class="work-card-top">
 		<div class="work-card-mark">
-			<span class="work-card-mark-letter">{entry.data.title.charAt(0)}</span>
+			{
+				hasFavicon ? (
+					<img
+						src={asset(`/favicons/${entry.id}.png`)}
+						alt=""
+						width="28"
+						height="28"
+						loading="lazy"
+						class="work-card-mark-logo"
+					/>
+				) : (
+					<span class="work-card-mark-letter">{entry.data.title.charAt(0)}</span>
+				)
+			}
 		</div>
 		<Icon name="arrow-up-right" size={20} class="work-card-arrow" aria-hidden="true" />
 	</div>
@@ -90,6 +108,13 @@ const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 	.work-card-mark-letter {
 		font-weight: 700;
 		font-size: 1.125rem;
+	}
+
+	.work-card-mark-logo {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
+		border-radius: 6px;
 	}
 
 	.work-card-arrow {
