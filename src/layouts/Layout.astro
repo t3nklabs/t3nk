@@ -1,0 +1,28 @@
+---
+// Global shell: head, fixed header and the shared noise canvas.
+// Pages own their background (white by default, black on dark pages).
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import NoiseCanvas from '../components/NoiseCanvas.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+}
+const { title, description, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} image={image} />
+	</head>
+	<body class="relative min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
+		<NoiseCanvas />
+		<Header />
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>

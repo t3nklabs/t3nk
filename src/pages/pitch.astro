@@ -1,0 +1,50 @@
+---
+// Ported from t3nk-old PitchPage.vue.
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Pitch Us" description="We back technical founders building software that has to work.">
+	<div class="pt-32 min-h-screen bg-black text-white px-6 pb-24">
+		<div class="max-w-4xl mx-auto text-center">
+			<div class="mb-12">
+				<h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-8">PITCH US</h1>
+				<p class="text-2xl font-mono text-gray-400">
+					We back technical founders building software that has to work.
+				</p>
+			</div>
+
+			<div class="bg-white/10 backdrop-blur-md p-12 rounded-2xl border border-white/20">
+				<p class="text-xl mb-8">Send a short note, your deck, and a link to the product or repo:</p>
+				<a
+					href="mailto:vc@t3nk.com"
+					class="text-4xl md:text-6xl font-bold bg-white text-black px-6 py-4 inline-block hover:scale-105 transition-transform"
+				>
+					vc@t3nk.com
+				</a>
+				<p class="mt-8 text-sm text-gray-500 font-mono">
+					Tell us what you're building, who uses it, and what you need. We read every pitch and reply when there's
+					a fit.
+				</p>
+			</div>
+
+			<div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+				<div class="p-6 border border-gray-800 rounded-lg">
+					<h3 class="text-xl font-bold mb-4">Capital</h3>
+					<p class="text-gray-400">Pre-seed to Series A. We invest in software companies with technical founders.</p>
+				</div>
+				<div class="p-6 border border-gray-800 rounded-lg">
+					<h3 class="text-xl font-bold mb-4">Engineering</h3>
+					<p class="text-gray-400">Our engineers join your repo and help you ship the next version.</p>
+				</div>
+				<div class="p-6 border border-gray-800 rounded-lg">
+					<h3 class="text-xl font-bold mb-4">Mentorship</h3>
+					<p class="text-gray-400">Architecture, security, hiring, and the parts that don't fit in a deck.</p>
+				</div>
+			</div>
+
+			<p class="mt-12 text-sm text-gray-500 font-mono">
+				What to send: the problem, the product, the team, and what you need.
+			</p>
+		</div>
+	</div>
+</Layout>

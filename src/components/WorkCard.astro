@@ -1,0 +1,57 @@
+---
+// Card for a work entry (project or update), ported from t3nk-old
+// ProjectsSection.vue — but linking internally to /work/<slug>.
+import Icon from './Icon.astro';
+import FormattedDate from './FormattedDate.astro';
+import { url } from '../consts';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	entry: CollectionEntry<'work'>;
+	/** Resolved title of `entry.data.project`, for update cards. */
+	projectTitle?: string;
+}
+
+const { entry, projectTitle } = Astro.props;
+const isProject = entry.data.kind === 'project';
+const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
+---
+
+<a
+	href={url(`work/${entry.id}`)}
+	class="group relative p-8 bg-white border border-gray-100 rounded-2xl hover:border-black transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 flex flex-col h-full cursor-pointer block"
+>
+	<!-- Top Row: Mark and Link -->
+	<div class="flex justify-between items-start mb-6">
+		<div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors duration-500">
+			<span class="font-bold text-lg">{entry.data.title.charAt(0)}</span>
+		</div>
+		<Icon name="arrow-up-right" size={20} class="text-gray-300 group-hover:text-black transition-colors" aria-hidden="true" />
+	</div>
+
+	<!-- Title -->
+	<h3 class="text-xl font-bold font-sans mb-3 text-black">{entry.data.title}</h3>
+
+	<!-- Description -->
+	<p class="text-sm text-gray-500 leading-relaxed font-sans mb-6 flex-grow">{entry.data.desc}</p>
+
+	<!-- Bottom Row: badge + meta -->
+	<div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-50">
+		<div class="flex items-baseline gap-3">
+			<span class="text-[10px] uppercase tracking-wider text-gray-500 bg-gray-100 px-2 py-1 rounded font-bold">
+				{primaryBadge}
+			</span>
+			{
+				!isProject && entry.data.date && <FormattedDate date={entry.data.date} />
+			}
+			{
+				!isProject && projectTitle && (
+					<span class="font-mono text-[11px] text-gray-400">{projectTitle}</span>
+				)
+			}
+		</div>
+		<span class="font-mono text-[10px] uppercase tracking-wider text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+			View
+		</span>
+	</div>
+</a>

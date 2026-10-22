@@ -1,0 +1,74 @@
+---
+// Ported from t3nk-old HeroSection.vue. Scroll arrow SVG is inlined instead of lucide.
+import { url } from '../../consts';
+---
+
+<section
+	class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white text-black px-6 py-24"
+>
+	<!-- Background Accents -->
+	<div
+		class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-yellow-300/10 rounded-full blur-3xl animate-pulse-slow pointer-events-none"
+	></div>
+	<div
+		class="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-orange-400/10 rounded-full blur-3xl animate-pulse-slower pointer-events-none"
+	></div>
+
+	<div class="max-w-5xl w-full text-center z-10">
+		<h1 class="font-sans text-[11vw] md:text-[7vw] leading-[0.9] font-black tracking-tighter mb-6 text-black">
+			WE FUND.<br />WE BUILD.
+		</h1>
+		<p
+			class="font-mono text-lg sm:text-xl font-bold tracking-widest mb-12 uppercase border-b-2 border-black inline-block pb-2"
+		>
+			The engineering-first VC
+		</p>
+
+		<div class="space-y-6 max-w-3xl mx-auto text-lg sm:text-xl font-sans text-gray-800 leading-relaxed">
+			<p>We invest in early-stage software companies. Then our engineers join the repo and help you ship.</p>
+			<p>Capital gets you started. Code gets you to revenue.</p>
+
+			<div class="mt-8 p-6 bg-gray-50 border border-gray-200 rounded-lg">
+				<p class="font-bold">Pre-seed to Series A. Software only.</p>
+				<p class="font-mono text-sm text-gray-600 mt-2">If the hard part is technical, we should talk.</p>
+			</div>
+		</div>
+
+		<div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+			<a href={url('pitch')} class="px-8 py-4 bg-black text-white font-mono font-bold hover:bg-gray-800 transition-colors">
+				PITCH US
+			</a>
+			<a href={url('work')} class="px-8 py-4 border-2 border-black font-mono font-bold hover:bg-gray-50 transition-colors">
+				SEE THE WORK
+			</a>
+		</div>
+
+		<div class="mt-16 flex justify-center">
+			<div class="animate-bounce">
+				<span class="font-mono text-sm tracking-widest">SCROLL</span>
+				<svg class="w-6 h-6 mx-auto mt-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+				</svg>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	@keyframes pulse-slow {
+		0%,
+		100% {
+			opacity: 0.5;
+		}
+		50% {
+			opacity: 0.8;
+		}
+	}
+	.animate-pulse-slow,
+	.animate-pulse-slower {
+		animation: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	}
+	.animate-pulse-slower {
+		animation-duration: 12s;
+	}
+</style>

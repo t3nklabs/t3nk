@@ -1,0 +1,20 @@
+---
+// Renders a lucide icon as inline SVG, sized via width/height attributes.
+import icons, { type IconName } from './icons';
+
+interface Props {
+	name: IconName;
+	size?: number;
+	class?: string;
+}
+
+const { name, size = 24, class: className = '' } = Astro.props;
+
+let svg = icons[name];
+svg = svg.replace('width="24" height="24"', `width="${size}" height="${size}"`);
+if (className) {
+	svg = svg.replace('<svg', `<svg class="${className.replaceAll('"', '&quot;')}"`);
+}
+---
+
+<Fragment set:html={svg} />

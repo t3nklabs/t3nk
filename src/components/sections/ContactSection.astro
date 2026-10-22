@@ -1,0 +1,142 @@
+---
+// Ported from t3nk-old ContactSection.vue — dark contact + site footer block.
+import Icon from '../Icon.astro';
+import { url } from '../../consts';
+
+const year = new Date().getFullYear();
+---
+
+<section id="contact" class="relative py-24 bg-black text-white px-6 overflow-hidden">
+	<!-- Background Pattern -->
+	<div
+		class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"
+	></div>
+
+	<div class="relative z-10 max-w-7xl mx-auto">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+			<!-- Heading Side -->
+			<div class="space-y-8">
+				<div
+					class="inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 text-xs font-mono tracking-widest text-gray-400 bg-white/5 backdrop-blur-sm"
+				>
+					<span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>
+					CONTACT
+				</div>
+
+				<h2 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9]">
+					BRING US<br />
+					<span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">THE HARD PART.</span>
+				</h2>
+
+				<p class="text-xl text-gray-400 max-w-md font-mono leading-relaxed border-l-2 border-white/20 pl-6">
+					If you're building software that has to work, tell us what you're working on. We'll reply with a
+					technical view, not a sales pitch.
+				</p>
+			</div>
+
+			<!-- Contact Options Side -->
+			<div class="grid gap-6">
+				<!-- Pitch Option -->
+				<a
+					href={url('pitch')}
+					class="group relative block p-8 bg-zinc-900/50 border border-white/10 hover:border-white/30 transition-all duration-500 rounded-2xl overflow-hidden"
+				>
+					<div
+						class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+					></div>
+
+					<div class="relative z-10">
+						<div class="flex justify-between items-start mb-6">
+							<div class="p-3 bg-white/5 rounded-xl group-hover:bg-white/10 transition-colors duration-300">
+								<Icon name="rocket" size={32} class="text-white" />
+							</div>
+							<span
+								class="font-mono text-[10px] uppercase tracking-widest border border-white/20 px-3 py-1 rounded-full text-gray-400 group-hover:border-white/40 group-hover:text-white transition-all duration-300"
+							>
+								For Founders
+							</span>
+						</div>
+
+						<h3 class="text-2xl font-bold mb-2 group-hover:text-white transition-colors">Pitch your company</h3>
+						<p class="text-sm font-mono text-gray-400 mb-6 group-hover:text-gray-300 transition-colors">
+							Pre-seed to Series A. Software companies with technical founders.
+						</p>
+
+						<div class="flex items-center gap-2 font-bold text-sm text-white group-hover:text-gray-200 transition-colors">
+							Start a conversation
+							<Icon name="arrow-right" size={16} class="group-hover:translate-x-1 transition-transform duration-300" />
+						</div>
+					</div>
+				</a>
+
+				<!-- General Inquiry Option -->
+				<a
+					href="mailto:in@t3nk.com"
+					class="group relative block p-8 bg-zinc-900/50 border border-white/10 hover:border-white/30 transition-all duration-500 rounded-2xl overflow-hidden"
+				>
+					<div
+						class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+					></div>
+
+					<div class="relative z-10">
+						<div class="flex justify-between items-start mb-6">
+							<div class="p-3 bg-white/5 rounded-xl group-hover:bg-white/10 transition-colors duration-300">
+								<Icon name="mail" size={32} class="text-white" />
+							</div>
+							<span
+								class="font-mono text-[10px] uppercase tracking-widest border border-white/20 px-3 py-1 rounded-full text-gray-400 group-hover:border-white/40 group-hover:text-white transition-all duration-300"
+							>
+								General
+							</span>
+						</div>
+
+						<h3 class="text-2xl font-bold mb-2 group-hover:text-white transition-colors">General inquiries</h3>
+						<p class="text-sm font-mono text-gray-400 mb-6 group-hover:text-gray-300 transition-colors">
+							Partnerships, hiring, or a question.
+						</p>
+
+						<div class="flex items-center gap-2 font-bold text-sm text-white group-hover:text-gray-200 transition-colors">
+							in@t3nk.com
+							<Icon name="arrow-right" size={16} class="group-hover:translate-x-1 transition-transform duration-300" />
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<!-- Principles -->
+		<div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 pt-12 border-t border-white/10">
+			<div class="group">
+				<div class="text-2xl md:text-3xl font-black mb-2 flex items-center gap-2">
+					<Icon name="code-2" size={20} class="text-gray-500" /> Capital + code
+				</div>
+				<div class="text-xs text-gray-500 font-mono uppercase tracking-widest">How we work</div>
+			</div>
+
+			<div class="group">
+				<div class="text-2xl md:text-3xl font-black mb-2 flex items-center gap-2">
+					<Icon name="dollar-sign" size={20} class="text-gray-500" /> Early stage
+				</div>
+				<div class="text-xs text-gray-500 font-mono uppercase tracking-widest">Stage</div>
+			</div>
+
+			<div class="group">
+				<div class="text-2xl md:text-3xl font-black mb-2 flex items-center gap-2">
+					<Icon name="layers" size={20} class="text-gray-500" /> Software
+				</div>
+				<div class="text-xs text-gray-500 font-mono uppercase tracking-widest">Focus</div>
+			</div>
+
+			<div class="group">
+				<div class="text-2xl md:text-3xl font-black mb-2 flex items-center gap-2">
+					<Icon name="users" size={20} class="text-gray-500" /> Long-term
+				</div>
+				<div class="text-xs text-gray-500 font-mono uppercase tracking-widest">Horizon</div>
+			</div>
+		</div>
+
+		<footer class="mt-16 pt-8 border-t border-white/10 text-center text-[10px] text-gray-600 font-mono tracking-widest uppercase">
+			T3NK &copy; {year} — Capital + code
+		</footer>
+	</div>
+</section>

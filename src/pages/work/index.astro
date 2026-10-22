@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WorkFeed from '../../components/WorkFeed.astro';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('work');
+---
+
+<Layout
+	title="Work"
+	description="Products and open-source tools built by the T3NK team — projects, updates and the changelog behind them."
+>
+	<div class="pt-24 min-h-screen bg-gray-50">
+		<div class="max-w-7xl mx-auto px-6 mb-10 text-center pt-6">
+			<h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">WORK</h1>
+			<p class="text-xl text-gray-500 font-mono">Products and open-source tools built by our team.</p>
+		</div>
+
+		<WorkFeed entries={entries} active="all" />
+	</div>
+</Layout>

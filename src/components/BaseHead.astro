@@ -1,0 +1,55 @@
+---
+// Central head for every page: favicon, meta, canonical, Open Graph/Twitter
+// and the site's two typefaces (Inter + JetBrains Mono, as loaded in t3nk-old).
+import '../styles/global.css';
+import { SITE_TITLE, SITE_DESCRIPTION, asset } from '../consts';
+
+interface Props {
+	title?: string;
+	description?: string;
+	/** Absolute /public path to the share image. */
+	image?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description = SITE_DESCRIPTION, image = asset('/banner.png') } = Astro.props;
+const pageTitle = title ? `${title} — T3NK` : SITE_TITLE;
+const imageURL = new URL(image, Astro.site);
+---
+
+<link rel="icon" type="image/svg+xml" href={asset('/favicon.svg')} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={new URL('rss.xml', Astro.site)} />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#ffffff" />
+<meta name="generator" content={Astro.generator} />
+<meta name="author" content="T3NK" />
+<meta name="keywords" content="venture capital, engineering-first VC, technical co-founder, seed funding, startup incubation, software engineering" />
+
+<link rel="canonical" href={canonicalURL} />
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:image:alt" content="T3NK — Capital + Code" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+	rel="stylesheet"
+/>

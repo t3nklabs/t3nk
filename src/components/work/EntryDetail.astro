@@ -1,0 +1,99 @@
+---
+// Detail page for a single work entry — both the project variant (card + body
+// + related updates) and the update variant (changelog post).
+import { render, type CollectionEntry } from 'astro:content';
+import Icon from '../Icon.astro';
+import FormattedDate from '../FormattedDate.astro';
+import WorkCard from '../WorkCard.astro';
+import { url } from '../../consts';
+
+interface Props {
+	entry: CollectionEntry<'work'>;
+	/** Updates that reference this project (project pages only). */
+	relatedUpdates: CollectionEntry<'work'>[];
+	/** slug -> project title, to resolve update->project links. */
+	projectTitles: Map<string, string>;
+}
+
+const { entry, relatedUpdates, projectTitles } = Astro.props;
+const isProject = entry.data.kind === 'project';
+const { Content } = await render(entry);
+const projectTitle = entry.data.project ? projectTitles.get(entry.data.project) : undefined;
+---
+
+<article class="bg-gray-50 pb-32">
+	<div class="max-w-4xl mx-auto px-6 pt-10">
+		<a
+			href={url('work')}
+			class="font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-black transition-colors"
+		>
+			← All work
+		</a>
+
+		<div class="flex flex-wrap items-center gap-2 mb-6 mt-10">
+			{
+				entry.data.tags.map((tag) => (
+					<span class="font-mono text-[10px] uppercase tracking-wider text-gray-500 bg-white border border-gray-200 px-2 py-1 rounded font-bold">
+						{tag}
+					</span>
+				))
+			}
+		</div>
+
+		<h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6">{entry.data.title}</h1>
+
+		<p class="text-lg md:text-xl text-gray-500 font-mono mb-10 max-w-2xl leading-relaxed">{entry.data.desc}</p>
+
+		{
+			isProject && entry.data.url && (
+				<a
+					href={entry.data.url}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-2 bg-black text-white px-6 py-3 font-mono font-bold hover:bg-gray-800 transition-colors"
+				>
+					VISIT PROJECT
+					<Icon name="arrow-up-right" size={16} />
+				</a>
+			)
+		}
+
+		{
+			!isProject && (
+				<div class="flex items-center gap-4 font-mono text-xs uppercase tracking-widest text-gray-500">
+					<span class="inline-flex items-center gap-2">
+						UPDATE
+						{entry.data.date && <FormattedDate date={entry.data.date} />}
+					</span>
+					{
+						projectTitle && (
+							<a
+								href={url(`work/${entry.data.project}`)}
+								class="bg-white border border-gray-200 px-2 py-1 rounded text-gray-500 hover:border-black hover:text-black transition-colors"
+							>
+								{projectTitle}
+							</a>
+						)
+					}
+				</div>
+			)
+		}
+
+		{Content && <div class="prose-basic mt-12 text-black"><Content /></div>}
+
+		{
+			isProject && relatedUpdates.length > 0 && (
+				<section class="mt-20">
+					<h2 class="font-mono text-sm uppercase tracking-widest text-gray-500 border-b border-gray-200 pb-4 mb-8">
+						UPDATES
+					</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+						{relatedUpdates.map((update) => (
+							<WorkCard entry={update} />
+						))}
+					</div>
+				</section>
+			)
+		}
+	</div>
+</article>

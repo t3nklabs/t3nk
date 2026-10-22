@@ -1,0 +1,100 @@
+---
+// /work sub-pages, all generated statically:
+//   /work/projects, /work/updates         — kind feeds
+//   /work/tag/<tag>                       — tag feeds (AI/ML -> /work/tag/ai-ml)
+//   /work/<entry-id>                      — detail page (project or update)
+// Reserved feed slugs: "projects", "updates", "tag/*". Avoid entry ids with
+// those names (enforced by the collision assertion below).
+import Layout from '../../layouts/Layout.astro';
+import WorkFeed from '../../components/WorkFeed.astro';
+import EntryDetail from '../../components/work/EntryDetail.astro';
+import { slugify, byOrder, byDateDesc } from '../../lib/work';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+	const entries = await getCollection('work');
+	const projects = entries.filter((entry) => entry.data.kind === 'project').sort(byOrder);
+	const updates = entries.filter((entry) => entry.data.kind === 'update').sort(byDateDesc);
+	const projectTitles = new Map(projects.map((project) => [project.id, project.data.title]));
+	const tags = [...new Set(entries.flatMap((entry) => entry.data.tags))];
+
+	// Entry ids must not shadow the reserved feed slugs.
+	const reserved = new Set(['projects', 'updates', 'work']);
+	const clash = entries.filter((entry) => reserved.has(entry.id) || entry.id.startsWith('tag/'));
+	if (clash.length > 0) {
+		throw new Error(`Work entry ids collide with reserved feed slugs: ${clash.map((c) => c.id).join(', ')}`);
+	}
+
+	return [
+		{
+			params: { slug: 'projects' },
+			props: { kind: 'feed', active: 'projects', subtitle: 'Products and open-source built by T3NK.', entries: projects },
+		},
+		{
+			params: { slug: 'updates' },
+			props: { kind: 'feed', active: 'updates', subtitle: 'Changelog — what we shipped and what changed.', entries: updates },
+		},
+		...tags.map((tag) => ({
+			params: { slug: `tag/${slugify(tag)}` },
+			props: {
+				kind: 'feed',
+				active: slugify(tag),
+				subtitle: `Tagged “${tag}”.`,
+				entries: entries.filter((entry) => entry.data.tags.includes(tag)),
+			},
+		})),
+		...entries.map((entry) => ({
+			params: { slug: entry.id },
+			props: {
+				kind: 'detail',
+				entry,
+				relatedUpdates: entry.data.kind === 'project' ? updates.filter((u) => u.data.project === entry.id) : [],
+				projectTitles,
+			},
+		})),
+	];
+}
+
+type FeedProps = {
+	kind: 'feed';
+	active: string;
+	subtitle: string;
+	entries: CollectionEntry<'work'>[];
+};
+
+type DetailProps = {
+	kind: 'detail';
+	entry: CollectionEntry<'work'>;
+	relatedUpdates: CollectionEntry<'work'>[];
+	projectTitles: Map<string, string>;
+};
+
+type Props = FeedProps | DetailProps;
+
+const props = Astro.props as Props;
+const isFeed = props.kind === 'feed';
+const pageTitle = !isFeed ? props.entry.data.title : props.active === 'all' ? 'Work' : `${props.active} — Work`;
+---
+
+<Layout
+	title={pageTitle}
+	description="Products and open-source tools built by the T3NK team — projects, updates and the changelog behind them."
+>
+	{
+		isFeed ? (
+			<div class="pt-24 min-h-screen bg-gray-50">
+				<div class="max-w-7xl mx-auto px-6 mb-10 text-center pt-6">
+					<h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">WORK</h1>
+					<p class="text-xl text-gray-500 font-mono">{props.subtitle}</p>
+				</div>
+				<WorkFeed entries={props.entries} active={props.active} />
+			</div>
+		) : (
+			<EntryDetail
+				entry={props.entry}
+				relatedUpdates={props.relatedUpdates}
+				projectTitles={props.projectTitles}
+			/>
+		)
+	}
+</Layout>
