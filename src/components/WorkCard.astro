@@ -19,33 +19,33 @@ const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 
 <a href={url(`work/${entry.id}`)} class="work-card">
 	<!-- Top Row: Mark and Link -->
-	<div class="card-top">
-		<div class="card-mark">
-			<span class="card-mark-letter">{entry.data.title.charAt(0)}</span>
+	<div class="work-card-top">
+		<div class="work-card-mark">
+			<span class="work-card-mark-letter">{entry.data.title.charAt(0)}</span>
 		</div>
-		<Icon name="arrow-up-right" size={20} class="card-arrow" aria-hidden="true" />
+		<Icon name="arrow-up-right" size={20} class="work-card-arrow" aria-hidden="true" />
 	</div>
 
 	<!-- Title -->
-	<h3 class="card-title">{entry.data.title}</h3>
+	<h3 class="work-card-title">{entry.data.title}</h3>
 
 	<!-- Description -->
-	<p class="card-desc">{entry.data.desc}</p>
+	<p class="work-card-desc">{entry.data.desc}</p>
 
 	<!-- Bottom Row: badge + meta -->
-	<div class="card-meta">
-		<div class="card-meta-left">
-			<span class="card-badge">{primaryBadge}</span>
+	<div class="work-card-meta">
+		<div class="work-card-meta-left">
+			<span class="work-card-badge">{primaryBadge}</span>
 			{
 				!isProject && entry.data.date && <FormattedDate date={entry.data.date} />
 			}
 			{
 				!isProject && projectTitle && (
-					<span class="card-project">{projectTitle}</span>
+					<span class="work-card-project">{projectTitle}</span>
 				)
 			}
 		</div>
-		<span class="card-view">View</span>
+		<span class="work-card-view">View</span>
 	</div>
 </a>
 
@@ -69,14 +69,14 @@ const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 		transform: translateY(-0.5rem);
 	}
 
-	.card-top {
+	.work-card-top {
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
 		margin-bottom: 1.5rem;
 	}
 
-	.card-mark {
+	.work-card-mark {
 		width: 3rem;
 		height: 3rem;
 		background: var(--gray-50);
@@ -87,26 +87,26 @@ const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 		transition: background-color 0.5s ease, color 0.5s ease;
 	}
 
-	.card-mark-letter {
+	.work-card-mark-letter {
 		font-weight: 700;
 		font-size: 1.125rem;
 	}
 
-	.card-arrow {
+	.work-card-arrow {
 		color: var(--gray-300);
 		transition: color 0.5s ease;
 	}
 
-	.work-card:hover .card-mark {
+	.work-card:hover .work-card-mark {
 		background: var(--black);
 		color: var(--white);
 	}
 
-	.work-card:hover .card-arrow {
+	.work-card:hover .work-card-arrow {
 		color: var(--black);
 	}
 
-	.card-title {
+	.work-card-title {
 		font-size: 1.25rem;
 		font-weight: 700;
 		font-family: var(--font-sans);
@@ -114,7 +114,7 @@ const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 		color: var(--black);
 	}
 
-	.card-desc {
+	.work-card-desc {
 		font-size: 0.875rem;
 		color: var(--gray-500);
 		line-height: 1.625;
@@ -123,7 +123,7 @@ const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 		flex-grow: 1;
 	}
 
-	.card-meta {
+	.work-card-meta {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -132,13 +132,13 @@ const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 		border-top: 1px solid var(--gray-50);
 	}
 
-	.card-meta-left {
+	.work-card-meta-left {
 		display: flex;
 		align-items: baseline;
 		gap: 0.75rem;
 	}
 
-	.card-badge {
+	.work-card-badge {
 		font-size: 0.625rem;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
@@ -149,13 +149,13 @@ const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 		font-weight: 700;
 	}
 
-	.card-project {
+	.work-card-project {
 		font-family: var(--font-mono);
 		font-size: 0.6875rem;
 		color: var(--gray-400);
 	}
 
-	.card-view {
+	.work-card-view {
 		font-family: var(--font-mono);
 		font-size: 0.625rem;
 		text-transform: uppercase;
@@ -165,7 +165,7 @@ const primaryBadge = isProject ? (entry.data.tags[0] ?? 'PROJECT') : 'UPDATE';
 		transition: opacity 0.3s ease;
 	}
 
-	.work-card:hover .card-view {
+	.work-card:hover .work-card-view {
 		opacity: 1;
 	}
 </style>
