@@ -14,14 +14,14 @@ const year = new Date().getFullYear();
 		<div class="contact-grid">
 			<!-- Heading Side -->
 			<div class="contact-intro">
-				<div class="badge-pill">
-					<span class="badge-dot"></span>
+				<div class="contact-badge">
+					<span class="contact-badge-dot"></span>
 					CONTACT
 				</div>
 
 				<h2 class="contact-title">
 					BRING US<br />
-					<span class="fade-text">THE HARD PART.</span>
+					<span class="contact-fade">THE HARD PART.</span>
 				</h2>
 
 				<p class="contact-note">
@@ -33,45 +33,45 @@ const year = new Date().getFullYear();
 			<!-- Contact Options Side -->
 			<div class="contact-options">
 				<!-- Pitch Option -->
-				<a href={url('pitch')} class="option">
-					<div class="option-sheen"></div>
+				<a href={url('pitch')} class="contact-option">
+					<div class="contact-option-sheen"></div>
 
-					<div class="option-body">
-						<div class="option-top">
-							<div class="option-icon">
+					<div class="contact-option-body">
+						<div class="contact-option-top">
+							<div class="contact-option-icon">
 								<Icon name="rocket" size={32} />
 							</div>
-							<span class="option-badge">For Founders</span>
+							<span class="contact-option-badge">For Founders</span>
 						</div>
 
-						<h3 class="option-title">Pitch your company</h3>
-						<p class="option-desc">Pre-seed to Series A. Software companies with technical founders.</p>
+						<h3 class="contact-option-title">Pitch your company</h3>
+						<p class="contact-option-desc">Pre-seed to Series A. Software companies with technical founders.</p>
 
-						<div class="option-cta">
+						<div class="contact-option-cta">
 							Start a conversation
-							<Icon name="arrow-right" size={16} class="option-arrow" />
+							<Icon name="arrow-right" size={16} class="contact-option-arrow" />
 						</div>
 					</div>
 				</a>
 
 				<!-- General Inquiry Option -->
-				<a href="mailto:in@t3nk.com" class="option">
-					<div class="option-sheen"></div>
+				<a href="mailto:in@t3nk.com" class="contact-option">
+					<div class="contact-option-sheen"></div>
 
-					<div class="option-body">
-						<div class="option-top">
-							<div class="option-icon">
+					<div class="contact-option-body">
+						<div class="contact-option-top">
+							<div class="contact-option-icon">
 								<Icon name="mail" size={32} />
 							</div>
-							<span class="option-badge">General</span>
+							<span class="contact-option-badge">General</span>
 						</div>
 
-						<h3 class="option-title">General inquiries</h3>
-						<p class="option-desc">Partnerships, hiring, or a question.</p>
+						<h3 class="contact-option-title">General inquiries</h3>
+						<p class="contact-option-desc">Partnerships, hiring, or a question.</p>
 
-						<div class="option-cta">
+						<div class="contact-option-cta">
 							in@t3nk.com
-							<Icon name="arrow-right" size={16} class="option-arrow" />
+							<Icon name="arrow-right" size={16} class="contact-option-arrow" />
 						</div>
 					</div>
 				</a>
@@ -79,37 +79,37 @@ const year = new Date().getFullYear();
 		</div>
 
 		<!-- Principles -->
-		<div class="principles">
-			<div class="principle">
-				<div class="principle-title">
-					<Icon name="code-2" size={20} class="principle-icon" /> Capital + code
+		<div class="contact-principles">
+			<div class="contact-principle">
+				<div class="contact-principle-title">
+					<Icon name="code-2" size={20} class="contact-principle-icon" /> Capital + code
 				</div>
-				<div class="principle-label">How we work</div>
+				<div class="contact-principle-label">How we work</div>
 			</div>
 
-			<div class="principle">
-				<div class="principle-title">
-					<Icon name="dollar-sign" size={20} class="principle-icon" /> Early stage
+			<div class="contact-principle">
+				<div class="contact-principle-title">
+					<Icon name="dollar-sign" size={20} class="contact-principle-icon" /> Early stage
 				</div>
-				<div class="principle-label">Stage</div>
+				<div class="contact-principle-label">Stage</div>
 			</div>
 
-			<div class="principle">
-				<div class="principle-title">
-					<Icon name="layers" size={20} class="principle-icon" /> Software
+			<div class="contact-principle">
+				<div class="contact-principle-title">
+					<Icon name="layers" size={20} class="contact-principle-icon" /> Software
 				</div>
-				<div class="principle-label">Focus</div>
+				<div class="contact-principle-label">Focus</div>
 			</div>
 
-			<div class="principle">
-				<div class="principle-title">
-					<Icon name="users" size={20} class="principle-icon" /> Long-term
+			<div class="contact-principle">
+				<div class="contact-principle-title">
+					<Icon name="users" size={20} class="contact-principle-icon" /> Long-term
 				</div>
-				<div class="principle-label">Horizon</div>
+				<div class="contact-principle-label">Horizon</div>
 			</div>
 		</div>
 
-		<footer class="site-footer">
+		<footer class="contact-footer">
 			T3NK &copy; {year} — Capital + code
 		</footer>
 	</div>
@@ -154,7 +154,7 @@ const year = new Date().getFullYear();
 		margin-top: 2rem;
 	}
 
-	.badge-pill {
+	.contact-badge {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -169,7 +169,7 @@ const year = new Date().getFullYear();
 		backdrop-filter: blur(4px);
 	}
 
-	.badge-dot {
+	.contact-badge-dot {
 		width: 0.375rem;
 		height: 0.375rem;
 		border-radius: 50%;
@@ -183,7 +183,7 @@ const year = new Date().getFullYear();
 		line-height: 0.9;
 	}
 
-	.fade-text {
+	.contact-fade {
 		color: transparent;
 		background-image: linear-gradient(to right, var(--white), var(--gray-400), var(--gray-600));
 		-webkit-background-clip: text;
@@ -206,7 +206,7 @@ const year = new Date().getFullYear();
 		gap: 1.5rem;
 	}
 
-	.option {
+	.contact-option {
 		position: relative;
 		display: block;
 		padding: 2rem;
@@ -217,11 +217,11 @@ const year = new Date().getFullYear();
 		transition: border-color 0.5s ease;
 	}
 
-	.option:hover {
+	.contact-option:hover {
 		border-color: rgba(255, 255, 255, 0.3);
 	}
 
-	.option-sheen {
+	.contact-option-sheen {
 		position: absolute;
 		inset: 0;
 		background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), transparent);
@@ -229,38 +229,38 @@ const year = new Date().getFullYear();
 		transition: opacity 0.5s ease;
 	}
 
-	.option:hover .option-sheen {
+	.contact-option:hover .contact-option-sheen {
 		opacity: 1;
 	}
 
-	.option-body {
+	.contact-option-body {
 		position: relative;
 		z-index: 10;
 	}
 
-	.option-top {
+	.contact-option-top {
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
 		margin-bottom: 1.5rem;
 	}
 
-	.option-icon {
+	.contact-option-icon {
 		padding: 0.75rem;
 		background: rgba(255, 255, 255, 0.05);
 		border-radius: 0.75rem;
 		transition: background-color 0.3s ease;
 	}
 
-	.option:hover .option-icon {
+	.contact-option:hover .contact-option-icon {
 		background: rgba(255, 255, 255, 0.1);
 	}
 
-	.option-icon :global(svg) {
+	.contact-option-icon :global(svg) {
 		color: var(--white);
 	}
 
-	.option-badge {
+	.contact-option-badge {
 		font-family: var(--font-mono);
 		font-size: 0.625rem;
 		text-transform: uppercase;
@@ -272,18 +272,18 @@ const year = new Date().getFullYear();
 		transition: border-color 0.3s ease, color 0.3s ease;
 	}
 
-	.option:hover .option-badge {
+	.contact-option:hover .contact-option-badge {
 		border-color: rgba(255, 255, 255, 0.4);
 		color: var(--white);
 	}
 
-	.option-title {
+	.contact-option-title {
 		font-size: 1.5rem;
 		font-weight: 700;
 		margin-bottom: 0.5rem;
 	}
 
-	.option-desc {
+	.contact-option-desc {
 		font-size: 0.875rem;
 		font-family: var(--font-mono);
 		color: var(--gray-400);
@@ -291,11 +291,11 @@ const year = new Date().getFullYear();
 		transition: color 0.3s ease;
 	}
 
-	.option:hover .option-desc {
+	.contact-option:hover .contact-option-desc {
 		color: var(--gray-300);
 	}
 
-	.option-cta {
+	.contact-option-cta {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -305,20 +305,20 @@ const year = new Date().getFullYear();
 		transition: color 0.3s ease;
 	}
 
-	.option:hover .option-cta {
+	.contact-option:hover .contact-option-cta {
 		color: var(--gray-200);
 	}
 
-	.option-cta :global(svg) {
+	.contact-option-cta :global(svg) {
 		transition: transform 0.3s ease;
 	}
 
-	.option:hover .option-cta :global(svg) {
+	.contact-option:hover .contact-option-cta :global(svg) {
 		transform: translateX(0.25rem);
 	}
 
 	/* Principles row */
-	.principles {
+	.contact-principles {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 2rem;
@@ -327,7 +327,7 @@ const year = new Date().getFullYear();
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
-	.principle-title {
+	.contact-principle-title {
 		font-size: 1.5rem;
 		font-weight: 900;
 		margin-bottom: 0.5rem;
@@ -336,11 +336,11 @@ const year = new Date().getFullYear();
 		gap: 0.5rem;
 	}
 
-	.principle-title :global(svg) {
+	.contact-principle-title :global(svg) {
 		color: var(--gray-500);
 	}
 
-	.principle-label {
+	.contact-principle-label {
 		font-size: 0.75rem;
 		color: var(--gray-500);
 		font-family: var(--font-mono);
@@ -349,7 +349,7 @@ const year = new Date().getFullYear();
 	}
 
 	/* Footer line */
-	.site-footer {
+	.contact-footer {
 		margin-top: 4rem;
 		padding-top: 2rem;
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -365,7 +365,7 @@ const year = new Date().getFullYear();
 		.contact-title {
 			font-size: 6rem;
 		}
-		.principle-title {
+		.contact-principle-title {
 			font-size: 1.875rem;
 		}
 	}
