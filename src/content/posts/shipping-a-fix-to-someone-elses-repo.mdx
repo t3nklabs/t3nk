@@ -1,0 +1,20 @@
+---
+title: Shipping a fix to someone else's repo
+desc: A short log of what porting a portfolio app from serial webhooks to event streams actually took.
+tags: [ENGINEERING LOG]
+date: 2026-10-08
+---
+
+One of our portfolio apps was quietly losing orders. Not errors — delays. The billing webhooks were processed serially, and after their summer growth, the queue was measured in *days* while the dashboard showed a green checkmark.
+
+**The bug** was the architecture, not the code: one background worker, one queue, all event types lumped together. Restore-progress looked fine; checkout did not.
+
+**The fix, in three commits:**
+
+- Split the queue by event type — checkout and cancellation get their own lanes with their own SLAs. Two hours.
+- Add a dead-letter queue with alerting on retry depth instead of failure count. One afternoon.
+- Backfill and replay from the provider's event log, then a two-week shadow mode where both pipelines ran and pivoted to the new one. This was the boring, load-bearing part.
+
+**Total:** a long weekend of our engineers' time, no customer-visible incident. The founders did the product work; the plumbing came from us.
+
+That's the whole deal of capital + code. The check is table stakes; the checkout lane is ours to unblock.
