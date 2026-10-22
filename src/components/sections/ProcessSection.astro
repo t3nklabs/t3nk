@@ -12,7 +12,7 @@ const steps = [
 	<!-- Background element -->
 	<div class="process-glow"></div>
 
-	<div class="container relative">
+	<div class="container">
 		<div class="process-head">
 			<h2 class="process-title">FROM ZERO TO <br />REVENUE.</h2>
 			<p class="process-sub">
@@ -27,12 +27,12 @@ const steps = [
 
 			{
 				steps.map(([num, title, desc]) => (
-					<div class="step">
-						<div class="step-box">
-							<span class="step-num">{num}</span>
+					<div class="process-step">
+						<div class="process-step-box">
+							<span class="process-step-num">{num}</span>
 						</div>
-						<h3 class="step-title">{title}</h3>
-						<p class="step-desc">{desc}</p>
+						<h3 class="process-step-title">{title}</h3>
+						<p class="process-step-desc">{desc}</p>
 					</div>
 				))
 			}
@@ -85,11 +85,11 @@ const steps = [
 		position: relative;
 	}
 
-	.step {
+	.process-step {
 		position: relative;
 	}
 
-	.step-box {
+	.process-step-box {
 		width: 6rem;
 		height: 6rem;
 		background: var(--neutral-900);
@@ -103,7 +103,7 @@ const steps = [
 		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 	}
 
-	.step-num {
+	.process-step-num {
 		font-family: var(--font-mono);
 		font-size: 2.25rem;
 		font-weight: 700;
@@ -111,23 +111,23 @@ const steps = [
 		transition: color 0.3s ease;
 	}
 
-	.step:hover .step-box {
+	.process-step:hover .process-step-box {
 		border-color: rgba(255, 255, 255, 0.4);
 		background: rgba(23, 23, 23, 0.8);
 	}
 
-	.step:hover .step-num {
+	.process-step:hover .process-step-num {
 		color: var(--white);
 	}
 
-	.step-title {
+	.process-step-title {
 		font-size: 1.25rem;
 		font-weight: 700;
 		color: var(--white);
 		margin-bottom: 0.75rem;
 	}
 
-	.step-desc {
+	.process-step-desc {
 		color: #737373;
 		font-size: 0.875rem;
 		line-height: 1.625;
