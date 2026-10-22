@@ -1,45 +1,129 @@
 ---
-// /posts/<slug> — a single post rendered from the posts collection.
+// /posts sub-pages, all generated statically:
+//   /posts/tag/<tag>   — series/tag feeds (DECISION NOTES -> /posts/tag/decision-notes)
+//   /posts/<entry-id>  — a single post
 import Layout from '../../layouts/Layout.astro';
+import PostsTabs from '../../components/PostsTabs.astro';
+import PostRow from '../../components/PostRow.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { render } from 'astro:content';
-import { getCollection } from 'astro:content';
+import { render, getCollection } from 'astro:content';
+import { slugify } from '../../lib/work';
 import { url } from '../../consts';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: { post },
-	}));
+	const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+	// Post ids must not shadow the reserved feed slugs.
+	const reserved = posts.filter((post) => post.id.startsWith('tag/') || post.id === 'tag');
+	if (reserved.length > 0) {
+		throw new Error(`Post ids collide with reserved feed slugs: ${reserved.map((r) => r.id).join(', ')}`);
+	}
+	return [
+		...tags.map((tag) => ({
+			params: { slug: `tag/${slugify(tag)}` },
+			props: { kind: 'feed' as const, tag, posts: posts.filter((post) => post.data.tags.includes(tag)) },
+		})),
+		...posts.map((post) => ({
+			params: { slug: post.id },
+			props: { kind: 'detail' as const, post },
+		})),
+	];
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const props = Astro.props;
+const pageTitle =
+	props.kind === 'detail' ? props.post.data.title : props.kind === 'feed' ? `${props.tag} — Posts` : 'Posts';
+// Global numbering: newest = highest, so a post keeps its number everywhere.
+const all = (await getCollection('posts')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const noOf = new Map(all.map((post, i) => [post.id, all.length - i]));
+
+const detail = props.kind === 'detail' ? props.post : null;
+const { Content } = detail ? await render(detail) : { Content: null };
 ---
 
-<Layout title={post.data.title} description={post.data.desc} ogType="article">
-	<article class="post">
-		<div class="post-inner">
-			<a href={url('posts')} class="post-back">← All posts</a>
-
-			<h1 class="post-title">{post.data.title}</h1>
-
-			<div class="post-meta">
-				{post.data.date && <FormattedDate date={post.data.date} />}
-				{post.data.tags.map((tag) => <span class="post-tag">{tag}</span>)}
+<Layout title={pageTitle} description="Notes from the T3NK partners — decision notes, engineering logs and signals from the edge of capital + code.">
+	{
+		props.kind === 'feed' && (
+			<div class="posts-page">
+				<div class="posts-head">
+					<h1 class="posts-title">POSTS</h1>
+					<p class="posts-sub">Tagged “{props.tag}”.</p>
+					<PostsTabs active={slugify(props.tag)} />
+				</div>
+				<div class="posts-list">
+					{props.posts.map((post) => (
+						<PostRow post={post} no={noOf.get(post.id)} />
+					))}
+				</div>
 			</div>
+		)
+	}
 
-			<p class="post-desc">{post.data.desc}</p>
+	{
+		detail && (
+			<article class="post">
+				<div class="post-inner">
+					<a href={url('posts')} class="post-back">
+						← All posts
+					</a>
 
-			<div class="prose-basic post-body">
-				<Content />
-			</div>
-		</div>
-	</article>
+					<h1 class="post-title">{detail.data.title}</h1>
+
+					<div class="post-meta">
+						{detail.data.date && <FormattedDate date={detail.data.date} />}
+						{detail.data.tags.map((tag) => (
+							<span class="post-tag">{tag}</span>
+						))}
+					</div>
+
+					<p class="post-desc">{detail.data.desc}</p>
+
+					{Content && (
+						<div class="prose-basic post-body">
+							<Content />
+						</div>
+					)}
+				</div>
+			</article>
+		)
+	}
 </Layout>
 
 <style>
+	.posts-page {
+		padding-top: 6rem;
+		min-height: 100vh;
+		background: var(--gray-50);
+	}
+
+	.posts-head {
+		max-width: 56rem;
+		margin: 0 auto 3rem;
+		padding: 1.5rem 1.5rem 0;
+	}
+
+	.posts-title {
+		font-size: 2.25rem;
+		font-weight: 900;
+		margin-bottom: 1rem;
+		letter-spacing: -0.025em;
+	}
+
+	.posts-sub {
+		font-size: 1.125rem;
+		color: var(--gray-500);
+		font-family: var(--font-mono);
+	}
+
+	.posts-list {
+		max-width: 56rem;
+		margin: 0 auto;
+		padding: 0 1.5rem 6rem;
+		display: grid;
+		gap: 1rem;
+	}
+
+	/* Detail page */
 	.post {
 		background: var(--gray-50);
 		padding-bottom: 8rem;
@@ -81,7 +165,7 @@ const { Content } = await render(post);
 		margin-bottom: 1rem;
 	}
 
-	.post-tag {
+	.post-meta .post-tag {
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		background: var(--white);

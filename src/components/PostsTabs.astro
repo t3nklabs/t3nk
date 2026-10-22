@@ -1,0 +1,73 @@
+---
+// Tab bar for the POSTS section: ALL + one tab per tag in use.
+// Pure static links to /posts and /posts/tag/<slug>.
+import { getCollection } from 'astro:content';
+import { slugify } from '../lib/work';
+import { url } from '../consts';
+
+interface Props {
+	/** Slug of the active tab ('' for all), or undefined to skip active state. */
+	active?: string;
+}
+
+const { active } = Astro.props;
+const posts = await getCollection('posts');
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+
+const tabs = [
+	{ label: 'All', slug: '', href: url('posts') },
+	...tags.map((tag) => ({
+		label: tag,
+		slug: slugify(tag),
+		href: url(`posts/tag/${slugify(tag)}`),
+	})),
+];
+---
+
+<nav class="posts-tabs" aria-label="Filter posts by series">
+	{
+		tabs.map((tab) => (
+			<a
+				href={tab.href}
+				class:list={['posts-tab', { 'is-active': active === tab.slug }]}
+				aria-current={active === tab.slug ? 'page' : undefined}
+			>
+				{tab.label}
+			</a>
+		))
+	}
+</nav>
+
+<style>
+	.posts-tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin: 2.5rem 0 2rem;
+	}
+
+	.posts-tab {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		padding: 0.5rem 1rem;
+		background: var(--white);
+		border: 1px solid var(--gray-200);
+		border-radius: 999px;
+		color: var(--gray-600);
+		transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+	}
+
+	.posts-tab:hover {
+		border-color: var(--black);
+		color: var(--black);
+	}
+
+	.posts-tab.is-active {
+		background: var(--black);
+		border-color: var(--black);
+		color: var(--white);
+	}
+</style>
