@@ -16,19 +16,19 @@ const members = [
 		desc: 'Runs delivery across portfolio companies. Keeps engineering, hiring, and timelines aligned.',
 	},
 	{
-		src: '/team/andrew.png',
+		src: '/team/andrew.jpg',
 		alt: 'Andrew',
 		role: 'Senior Software Engineer',
 		desc: 'Backend and platform engineer. Builds APIs, data pipelines, and the core systems behind portfolio products.',
 	},
 	{
-		src: '/team/jamei.png',
+		src: '/team/jamei.jpg',
 		alt: 'Jamei',
 		role: 'Product Designer',
 		desc: 'Designs product experiences and interfaces. Turns user research into shipped, usable software.',
 	},
 	{
-		src: '/team/tuje.png',
+		src: '/team/tuje.jpg',
 		alt: 'Tuje',
 		role: 'Operations Lead',
 		desc: 'Runs hiring, finance, and portfolio ops. Keeps the fund and its companies moving.',
@@ -49,7 +49,7 @@ const members = [
 				members.map((member) => (
 					<div class="team-member">
 						<div class="team-member-photo">
-							<img src={asset(member.src)} alt={member.alt} class="team-member-img" />
+							<img src={asset(member.src)} alt={member.alt} class="team-member-img" loading="lazy" decoding="async" />
 							<div class="team-member-shade"></div>
 						</div>
 
