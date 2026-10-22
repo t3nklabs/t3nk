@@ -8,6 +8,10 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Git
+
+After every edit: commit to main and push with the GitHub CLI — the push trips the Pages workflow, so the site updates each time.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
