@@ -70,7 +70,7 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 						<div class="service-tags">
 							<div class="service-pills">
 								{service.tags.map((tag) => (
-									<span class="pill">{tag}</span>
+									<span class="service-pill">{tag}</span>
 								))}
 							</div>
 							<div class="service-arrow">
@@ -84,10 +84,10 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 
 		<div class="services-banner">
 			<div class="services-banner-copy">
-				<span class="dot"></span>
+				<span class="services-banner-dot"></span>
 				<p>Every company we back gets our engineering team in the repo.</p>
 			</div>
-			<a href={url('pitch')} class="banner-cta">
+			<a href={url('pitch')} class="services-banner-cta">
 				Pitch your company →
 			</a>
 		</div>
@@ -188,7 +188,7 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 		font-family: var(--font-mono);
 	}
 
-	.pill {
+	.service-pill {
 		border: 1px solid var(--gray-200);
 		padding: 0.25rem 0.5rem;
 		border-radius: 0.25rem;
@@ -204,7 +204,7 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 		font-size: 1.5rem;
 	}
 
-	.service .pill {
+	.service .service-pill {
 		border-color: var(--gray-200);
 	}
 
@@ -222,7 +222,7 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 		color: #d1d5db;
 	}
 
-	.service:hover .pill {
+	.service:hover .service-pill {
 		background: var(--gray-800);
 		color: #d1d5db;
 		border-color: var(--gray-700);
@@ -250,7 +250,7 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 		margin-bottom: 1.5rem;
 	}
 
-	.dot {
+	.services-banner-dot {
 		width: 0.5rem;
 		height: 0.5rem;
 		background: var(--white);
@@ -263,7 +263,7 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 		font-weight: 700;
 	}
 
-	.banner-cta {
+	.services-banner-cta {
 		padding: 0.75rem 2rem;
 		background: var(--white);
 		color: var(--black);
@@ -273,7 +273,7 @@ const services: { icon: IconName; title: string; desc: string; tags: string[] }[
 		text-transform: uppercase;
 	}
 
-	.banner-cta:hover {
+	.services-banner-cta:hover {
 		background: #e5e7eb;
 	}
 
