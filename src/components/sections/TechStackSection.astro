@@ -35,7 +35,7 @@ const row2 = [
 	{
 		[row1, row2].map((row, i) => (
 			<div class:list={['stack-marquee', i === 0 && 'stack-marquee-gap']}>
-				<div class:list={['stack-marquee-track', i === 0 ? 'stack-stack-scroll-left' : 'stack-stack-scroll-right']}>
+				<div class:list={['stack-marquee-track', i === 0 ? 'stack-scroll-left' : 'stack-scroll-right']}>
 					{row.map((tech) => (
 						<div class="stack-tech">
 							<img src={`https://cdn.simpleicons.org/${tech.slug}/000000`} alt={tech.name} class="stack-tech-logo" />
