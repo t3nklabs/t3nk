@@ -34,19 +34,19 @@ const row2 = [
 
 	{
 		[row1, row2].map((row, i) => (
-			<div class:list={['marquee', i === 0 && 'marquee-gap']}>
-				<div class:list={['marquee-track', i === 0 ? 'scroll-left' : 'scroll-right']}>
+			<div class:list={['stack-marquee', i === 0 && 'stack-marquee-gap']}>
+				<div class:list={['stack-marquee-track', i === 0 ? 'stack-stack-scroll-left' : 'stack-stack-scroll-right']}>
 					{row.map((tech) => (
-						<div class="tech">
-							<img src={`https://cdn.simpleicons.org/${tech.slug}/000000`} alt={tech.name} class="tech-logo" />
-							<span class="tech-name">{tech.name}</span>
+						<div class="stack-tech">
+							<img src={`https://cdn.simpleicons.org/${tech.slug}/000000`} alt={tech.name} class="stack-tech-logo" />
+							<span class="stack-tech-name">{tech.name}</span>
 						</div>
 					))}
 					{/* Duplicate for seamless loop */}
 					{row.map((tech) => (
-						<div class="tech" aria-hidden="true">
-							<img src={`https://cdn.simpleicons.org/${tech.slug}/000000`} alt="" class="tech-logo" />
-							<span class="tech-name">{tech.name}</span>
+						<div class="stack-tech" aria-hidden="true">
+							<img src={`https://cdn.simpleicons.org/${tech.slug}/000000`} alt="" class="stack-tech-logo" />
+							<span class="stack-tech-name">{tech.name}</span>
 						</div>
 					))}
 				</div>
@@ -90,7 +90,7 @@ const row2 = [
 		color: var(--gray-500);
 	}
 
-	.marquee {
+	.stack-marquee {
 		width: 100%;
 		overflow: hidden;
 		position: relative;
@@ -99,17 +99,17 @@ const row2 = [
 		-webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 	}
 
-	.marquee-gap {
+	.stack-marquee-gap {
 		margin-bottom: 2rem;
 	}
 
-	.marquee-track {
+	.stack-marquee-track {
 		display: flex;
 		gap: 4rem; /* Spacing between logos */
 		width: max-content;
 	}
 
-	@keyframes scroll-left {
+	@keyframes stack-scroll-left {
 		0% {
 			transform: translateX(0);
 		}
@@ -118,7 +118,7 @@ const row2 = [
 		}
 	}
 
-	@keyframes scroll-right {
+	@keyframes stack-scroll-right {
 		0% {
 			transform: translateX(-50%);
 		}
@@ -127,20 +127,20 @@ const row2 = [
 		}
 	}
 
-	.scroll-left {
-		animation: scroll-left 30s linear infinite;
+	.stack-scroll-left {
+		animation: stack-scroll-left 30s linear infinite;
 	}
 
-	.scroll-right {
-		animation: scroll-right 30s linear infinite;
+	.stack-scroll-right {
+		animation: stack-scroll-right 30s linear infinite;
 	}
 
 	/* Pause on hover for easier viewing */
-	.marquee:hover .marquee-track {
+	.stack-marquee:hover .stack-marquee-track {
 		animation-play-state: paused;
 	}
 
-	.tech {
+	.stack-tech {
 		position: relative;
 		display: flex;
 		align-items: center;
@@ -148,7 +148,7 @@ const row2 = [
 		padding: 1rem;
 	}
 
-	.tech-logo {
+	.stack-tech-logo {
 		height: 3rem;
 		width: 3rem;
 		opacity: 0.4;
@@ -156,12 +156,12 @@ const row2 = [
 		transition: opacity 0.3s ease, filter 0.3s ease;
 	}
 
-	.tech:hover .tech-logo {
+	.stack-tech:hover .stack-tech-logo {
 		opacity: 1;
 		filter: grayscale(0);
 	}
 
-	.tech-name {
+	.stack-tech-name {
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		margin-top: 0.5rem;
@@ -178,7 +178,7 @@ const row2 = [
 		border-radius: 0.25rem;
 	}
 
-	.tech:hover .tech-name {
+	.stack-tech:hover .stack-tech-name {
 		opacity: 1;
 	}
 
