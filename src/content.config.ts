@@ -31,4 +31,18 @@ const posts = defineCollection({
 	}),
 });
 
-export const collections = { work, posts };
+// TEAM — one markdown file per person. The body is their personal-page bio;
+// `desc` is the short card copy shown on /team.
+const team = defineCollection({
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/team' }),
+	schema: z.object({
+		name: z.string(),
+		role: z.string(),
+		desc: z.string(),
+		photo: z.string(), // path under /team/ (public dir), e.g. "/team/aman.png"
+		links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
+		order: z.number().optional(),
+	}),
+});
+
+export const collections = { work, posts, team };

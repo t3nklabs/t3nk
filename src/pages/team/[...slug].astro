@@ -1,0 +1,160 @@
+---
+// /team/<person> — one page per teammate, rendered from the team collection.
+import Layout from '../../layouts/Layout.astro';
+import { render, getCollection } from 'astro:content';
+import { url, asset } from '../../consts';
+
+export async function getStaticPaths() {
+	const members = (await getCollection('team')).sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+	return members.map((member) => ({ params: { slug: member.id }, props: { member } }));
+}
+
+const { member } = Astro.props;
+const { Content } = await render(member);
+---
+
+<Layout title={`${member.data.name} — Team`} description={member.data.desc}>
+	<article class="person">
+		<div class="person-inner">
+			<a href={url('team')} class="person-back">← THE TEAM</a>
+
+			<div class="person-grid">
+				<div class="person-photo-wrap">
+					<img src={asset(member.data.photo)} alt={member.data.name} class="person-photo" loading="eager" decoding="async" />
+				</div>
+
+				<div class="person-body">
+					<h1 class="person-name">{member.data.name}</h1>
+					<p class="person-role">{member.data.role}</p>
+					<p class="person-desc">{member.data.desc}</p>
+
+					{
+						member.data.links.length > 0 && (
+							<div class="person-links">
+								{member.data.links.map((link) => (
+									<a href={link.url} target="_blank" rel="noopener noreferrer" class="person-link">
+										{link.label.toUpperCase()}
+									</a>
+								))}
+							</div>
+						)
+					}
+
+					<div class="prose-basic person-bio">
+						<Content />
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.person {
+		background: var(--white);
+		padding: 8rem 1.5rem 8rem;
+		min-height: 100vh;
+	}
+
+	.person-inner {
+		max-width: 64rem;
+		margin: 0 auto;
+	}
+
+	.person-back {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--gray-500);
+		transition: color 0.15s ease;
+	}
+
+	.person-back:hover {
+		color: var(--black);
+	}
+
+	.person-grid {
+		margin-top: 3rem;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+		align-items: start;
+	}
+
+	.person-photo-wrap {
+		overflow: hidden;
+		background: var(--gray-100);
+		aspect-ratio: 3 / 4;
+		max-width: 24rem;
+	}
+
+	.person-photo {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.person-name {
+		font-size: 2.75rem;
+		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: -0.025em;
+		margin-bottom: 0.5rem;
+	}
+
+	.person-role {
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--gray-500);
+		border-bottom: 1px solid var(--gray-200);
+		padding-bottom: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.person-desc {
+		font-size: 1.125rem;
+		color: var(--black);
+		line-height: 1.625;
+		margin-bottom: 1.5rem;
+	}
+
+	.person-links {
+		display: flex;
+		gap: 0.75rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.person-link {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		padding: 0.5rem 1rem;
+		border: 1px solid var(--gray-300);
+		border-radius: 0.25rem;
+		color: var(--black);
+		transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+	}
+
+	.person-link:hover {
+		background: var(--black);
+		border-color: var(--black);
+		color: var(--white);
+	}
+
+	.person-bio {
+		color: var(--black);
+	}
+
+	@media (min-width: 768px) {
+		.person-grid {
+			grid-template-columns: 20rem 1fr;
+		}
+		.person-name {
+			font-size: 4rem;
+		}
+	}
+</style>
