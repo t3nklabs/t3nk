@@ -5,6 +5,16 @@ interface Props {
 const { date } = Astro.props;
 ---
 
-<time datetime={date.toISOString()} class="font-mono text-[11px] uppercase tracking-widest text-gray-400">
+<time datetime={date.toISOString()} class="formatted-date">
 	{date.toISOString().slice(0, 10)}
 </time>
+
+<style>
+	.formatted-date {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--gray-400);
+	}
+</style>
