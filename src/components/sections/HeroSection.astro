@@ -5,8 +5,8 @@ import { url } from '../../consts';
 
 <section class="hero">
 	<!-- Background Accents -->
-	<div class="glow glow-yellow"></div>
-	<div class="glow glow-orange"></div>
+	<div class="hero-glow hero-glow-yellow"></div>
+	<div class="hero-glow hero-glow-orange"></div>
 
 	<div class="hero-inner">
 		<h1 class="hero-title">WE FUND.<br />WE BUILD.</h1>
@@ -28,9 +28,9 @@ import { url } from '../../consts';
 		</div>
 
 		<div class="hero-scroll">
-			<div class="scroll-hint">
-				<span class="scroll-label">SCROLL</span>
-				<svg class="scroll-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<div class="hero-scroll-hint">
+				<span class="hero-scroll-label">SCROLL</span>
+				<svg class="hero-scroll-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
 				</svg>
 			</div>
@@ -52,14 +52,14 @@ import { url } from '../../consts';
 		padding: 6rem 1.5rem;
 	}
 
-	.glow {
+	.hero-glow {
 		position: absolute;
 		border-radius: 50%;
 		filter: blur(64px);
 		pointer-events: none;
 	}
 
-	.glow-yellow {
+	.hero-glow-yellow {
 		top: 25%;
 		left: 25%;
 		width: 600px;
@@ -68,7 +68,7 @@ import { url } from '../../consts';
 		animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 	}
 
-	.glow-orange {
+	.hero-glow-orange {
 		bottom: 33%;
 		right: 25%;
 		width: 500px;
@@ -161,7 +161,7 @@ import { url } from '../../consts';
 		justify-content: center;
 	}
 
-	.scroll-hint {
+	.hero-scroll-hint {
 		animation: bounce 1s infinite;
 		cursor: pointer;
 	}
@@ -178,13 +178,13 @@ import { url } from '../../consts';
 		}
 	}
 
-	.scroll-label {
+	.hero-scroll-label {
 		font-family: var(--font-mono);
 		font-size: 0.875rem;
 		letter-spacing: 0.1em;
 	}
 
-	.scroll-arrow {
+	.hero-scroll-arrow {
 		width: 1.5rem;
 		height: 1.5rem;
 		margin: 0.5rem auto 0;
