@@ -7,8 +7,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://t3nklabs.github.io',
-	base: '/t3nk',
+	site: 'https://t3nk.com',
 	integrations: [mdx(), sitemap()],
 	vite: {
 		plugins: [tailwindcss()],

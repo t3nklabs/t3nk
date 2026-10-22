@@ -31,20 +31,38 @@ SPA in `t3nk-old`), deployed to GitHub Pages at
 
 ```sh
 npm install
-npm run dev     # http://localhost:4321/t3nk/
+npm run dev     # http://localhost:4321/
 npm run build   # dist/
 ```
 
 Dev server in background mode (per repo convention): `astro dev --background`,
 managed with `astro dev stop` / `astro dev status` / `astro dev logs`.
 
-## Base path
+## Custom domain
 
-GitHub Pages project sites are served under `/t3nk/`, so `astro.config.mjs`
-sets `base: '/t3nk'` and `site: 'https://t3nklabs.github.io'`. All internal
+The site deploys to **https://t3nk.com** on GitHub Pages. `astro.config.mjs`
+sets `site: 'https://t3nk.com'` with no `base` (served at the domain root);
+`public/CNAME` keeps the custom domain bound across deployments. All internal
 links go through `url()` / `asset()` in `src/consts.ts` — never hardcode
-routes. If the site later moves to a dedicated domain, set `site` to it and
-`base: '/'`.
+routes.
+
+One-time DNS setup (at the registrar):
+
+```text
+A     @     185.199.108.153
+A     @     185.199.109.153
+A     @     185.199.110.153
+A     @     185.199.111.153
+AAAA  @     2606:50c0:8000::153
+AAAA  @     2606:50c0:8001::153
+AAAA  @     2606:50c0:8002::153
+AAAA  @     2606:50c0:8003::153
+CNAME www   t3nklabs.github.io
+```
+
+Then in the repo: **Settings → Pages → Build and deployment → Source: GitHub
+Actions**, add the custom domain `t3nk.com`, and enable **Enforce HTTPS**
+once the certificate finishes provisioning.
 
 ## Deploy
 
