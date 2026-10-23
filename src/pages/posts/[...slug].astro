@@ -98,7 +98,9 @@ const schemaJSON = detail
 					<div class="post-meta">
 						{detail.data.date && <FormattedDate date={detail.data.date} />}
 						{detail.data.tags.map((tag) => (
-							<span class="post-tag">{tag}</span>
+							<a href={url(`posts/tag/${slugify(tag)}`)} class="post-tag" aria-label={`More in ${tag}`}>
+								{tag}
+							</a>
 						))}
 					</div>
 
@@ -192,6 +194,7 @@ const schemaJSON = detail
 		margin-bottom: 1rem;
 	}
 
+	/* Series chip in the meta row — breadcrumb into the series feed. */
 	.post-meta .post-tag {
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
@@ -200,6 +203,17 @@ const schemaJSON = detail
 		padding: 0.25rem 0.5rem;
 		border-radius: 0.25rem;
 		font-weight: 700;
+	}
+
+	.post-meta a.post-tag:hover {
+		background: var(--black);
+		border-color: var(--black);
+		color: var(--white);
+	}
+
+	.post-meta a.post-tag:focus-visible {
+		outline: 2px solid var(--black);
+		outline-offset: 1px;
 	}
 
 	.post-desc {
