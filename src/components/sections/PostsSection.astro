@@ -1,0 +1,101 @@
+---
+// Home "latest posts" strip: the 3 newest entries from the posts collection,
+// statically rendered at build (no client JS). Numbering matches /posts
+// (newest = highest), so a post keeps its number across both views.
+import { getCollection } from 'astro:content';
+import { url } from '../../consts';
+import PostRow from '../PostRow.astro';
+
+const sorted = (await getCollection('posts')).sort(
+	(a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const total = sorted.length;
+const latest = sorted.slice(0, 3);
+---
+
+<section id="posts" class="lp">
+	<div class="container lp-inner">
+		<div class="lp-head">
+			<div>
+				<span class="eyebrow lp-eyebrow">Posts</span>
+				<h2 class="lp-title">Latest from <span class="fade-text fade-text-light">the partners.</span></h2>
+				<p class="lp-sub">Decisions, engineering logs and signals. Not a blog.</p>
+			</div>
+			<a href={url('posts')} class="lp-all">ALL POSTS →</a>
+		</div>
+
+		<div class="lp-rows">
+			{latest.map((post, i) => <PostRow post={post} no={total - i} />)}
+		</div>
+	</div>
+</section>
+
+<style>
+	.lp {
+		padding: 8rem 1.5rem;
+		background: var(--gray-50);
+	}
+
+	.lp-head {
+		max-width: 56rem;
+		margin: 0 auto 3rem;
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 2rem;
+	}
+
+	.lp-eyebrow {
+		color: var(--gray-500);
+		display: block;
+		margin-bottom: 0.75rem;
+	}
+
+	.lp-title {
+		font-size: 2.25rem;
+		font-weight: 900;
+		letter-spacing: -0.025em;
+	}
+
+	.lp-sub {
+		margin-top: 0.75rem;
+		font-family: var(--font-mono);
+		font-size: 1rem;
+		color: var(--gray-500);
+	}
+
+	.lp-all {
+		flex-shrink: 0;
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		font-weight: 700;
+		padding: 0.75rem 1.25rem;
+		border: 1px solid var(--gray-200);
+		border-radius: 0.75rem;
+		background: var(--white);
+		transition: border-color 0.3s ease, transform 0.3s ease;
+	}
+
+	.lp-all:hover {
+		border-color: var(--black);
+		transform: translateY(-0.25rem);
+	}
+
+	.lp-rows {
+		max-width: 56rem;
+		margin: 0 auto;
+		display: grid;
+		gap: 1rem;
+	}
+
+	@media (max-width: 640px) {
+		.lp {
+			padding: 5rem 1.5rem;
+		}
+
+		.lp-head {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>
