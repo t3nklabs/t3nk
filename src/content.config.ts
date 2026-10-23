@@ -41,6 +41,8 @@ const team = defineCollection({
 		role: z.string(),
 		desc: z.string(),
 		photo: z.string(), // path under /team/ (public dir), e.g. "/team/akhil-thakur.png"
+		// Where they work from — "City, Country", shown next to the role.
+		location: z.string().optional(),
 		links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
 		order: z.number().optional(),
 		hobbies: z.array(z.object({ emoji: z.string(), title: z.string() })).default([]),
