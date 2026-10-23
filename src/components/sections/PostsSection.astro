@@ -98,4 +98,33 @@ const latest = sorted.slice(0, 3);
 			align-items: flex-start;
 		}
 	}
+
+	/* Scroll-in rise: CSS scroll-driven animations, no JS. Browsers without
+	   animation-timeline just render the section fully visible. */
+	@supports (animation-timeline: view()) {
+		.lp-head,
+		.lp-rows > * {
+			animation: lp-rise 0.7s linear both;
+			animation-timeline: view();
+			animation-range: entry 20% entry 70%;
+		}
+
+		@keyframes lp-rise {
+			from {
+				opacity: 0;
+				translate: 0 2rem;
+			}
+			to {
+				opacity: 1;
+				translate: 0 0;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.lp-head,
+			.lp-rows > * {
+				animation: none;
+			}
+		}
+	}
 </style>
