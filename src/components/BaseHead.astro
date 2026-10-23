@@ -18,8 +18,6 @@ const { title, description = SITE_DESCRIPTION, image = asset('/banner.png'), ogT
 const pageTitle = title ? `${title} — T3NK` : SITE_TITLE;
 const imageURL = new URL(image, Astro.site);
 const imageType = imageURL.pathname.endsWith('.png') ? 'image/png' : undefined;
-// og:image dimensions are only known for the default banner.
-const isBanner = image === asset('/banner.png');
 const siteURL = new URL('/', Astro.site).toString();
 ---
 
@@ -47,8 +45,8 @@ const siteURL = new URL('/', Astro.site).toString();
 <meta property="og:image" content={imageURL} />
 <meta property="og:image:alt" content="T3NK — Capital + Code" />
 {imageType && <meta property="og:image:type" content={imageType} />}
-{isBanner && <meta property="og:image:width" content="1200" />}
-{isBanner && <meta property="og:image:height" content="630" />}
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />

@@ -8,7 +8,7 @@ import PostRow from '../../components/PostRow.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { render, getCollection } from 'astro:content';
 import { slugify } from '../../lib/work';
-import { url } from '../../consts';
+import { url, asset } from '../../consts';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts');
@@ -39,9 +39,34 @@ const noOf = new Map(all.map((post, i) => [post.id, all.length - i]));
 
 const detail = props.kind === 'detail' ? props.post : null;
 const { Content } = detail ? await render(detail) : { Content: null };
+
+const detailDescription =
+	'Notes from the T3NK partners — decision notes, engineering logs and signals from the edge of capital + code.';
+const description = detail ? detail.data.desc : detailDescription;
+// Build-time OG card (src/pages/og/[slug].png.ts), banner fallback elsewhere.
+const image = detail ? asset(`/og/${detail.id}.png`) : undefined;
+
+const siteURL = new URL('/', Astro.site).toString();
+const schemaJSON = detail
+	? JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'Article',
+			headline: detail.data.title,
+			description: detail.data.desc,
+			datePublished: detail.data.date,
+			author: { '@id': `${siteURL}#organization` },
+			publisher: { '@id': `${siteURL}#organization` },
+		})
+	: null;
 ---
 
-<Layout title={pageTitle} description="Notes from the T3NK partners — decision notes, engineering logs and signals from the edge of capital + code.">
+<Layout
+	title={pageTitle}
+	description={description}
+	ogType={detail ? 'article' : 'website'}
+	image={image}
+>
+	{schemaJSON && <script is:inline type="application/ld+json" set:html={schemaJSON} />}
 	{
 		props.kind === 'feed' && (
 			<div class="posts-page">
