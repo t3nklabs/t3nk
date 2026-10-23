@@ -1,6 +1,7 @@
 ---
 // POSTS index — the writing feed. Newest first, numbered, tabs per series.
 import Layout from '../../layouts/Layout.astro';
+import { asset } from '../../consts';
 import PostsTabs from '../../components/PostsTabs.astro';
 import PostRow from '../../components/PostRow.astro';
 import { getCollection } from 'astro:content';
@@ -11,7 +12,12 @@ const posts = (await getCollection('posts')).sort(
 const total = posts.length;
 ---
 
-<Layout title="Posts" description="Notes from the T3NK partners — decision notes, engineering logs and signals from the edge of capital + code.">
+<Layout
+	title="Posts"
+	description="Notes from the T3NK partners — decision notes, engineering logs and signals from the edge of capital + code."
+	image={asset('/og/posts.png')}
+	imageAlt="POSTS — decisions, engineering logs and signals from the T3NK partners. Not a blog."
+>
 	<div class="posts-page">
 		<div class="posts-head">
 			<h1 class="posts-title">POSTS</h1>

@@ -1,9 +1,15 @@
 ---
 // Ported from t3nk-old PitchPage.vue.
 import Layout from '../layouts/Layout.astro';
+import { asset } from '../consts';
 ---
 
-<Layout title="Pitch Us" description="We back technical founders building software that has to work.">
+<Layout
+	title="Pitch Us"
+	description="We back technical founders building software that has to work."
+	image={asset('/og/pitch.png')}
+	imageAlt="PITCH US — T3NK backs technical founders building software that has to work."
+>
 	<div class="pitch">
 		<div class="pitch-inner">
 			<div class="pitch-head">

@@ -2,7 +2,7 @@
 // Ported from t3nk-old AboutPage.vue.
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
-import { url } from '../consts';
+import { url, asset } from '../consts';
 
 const howWeWork = [
 	{ title: 'Invest early', desc: 'Pre-seed to Series A. Software companies with technical founders.' },
@@ -15,7 +15,11 @@ const howWeWork = [
 ];
 ---
 
-<Layout title="Capital. Then Code.">
+<Layout
+	title="Capital. Then Code."
+	image={asset('/og/about.png')}
+	imageAlt="CAPITAL. THEN CODE. — T3NK, the engineering-first VC: we invest, then we work."
+>
 	<div class="about">
 		<!-- Spacer for fixed header to create "white margin" effect -->
 		<div class="about-spacer"></div>
