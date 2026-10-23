@@ -2,6 +2,7 @@
 // Ported from deer.capital's contact section (light, centered pitch block
 // with stats row + embedded site footer). Replaces the dark two-card layout.
 import Icon from '../Icon.astro';
+import { url } from '../../consts';
 
 const year = new Date().getFullYear();
 ---
@@ -18,34 +19,38 @@ const year = new Date().getFullYear();
 			<span class="fade-text fade-text-light">SOMETHING BIG?</span>
 		</h2>
 
-		<a href="mailto:in@t3nk.com" class="contact-link">
+		<a href={url('pitch')} class="contact-link">
 			<span>&#9889; PITCH US</span>
-			<span class="contact-link-mail">in@t3nk.com</span>
+			<span class="contact-link-mail">/pitch</span>
 		</a>
 
 		<p class="contact-note">
 			// We respond to every founder. No deck required for first contact.
 		</p>
 
+		<p class="contact-alt">
+			Prefer email? <a href="mailto:in@t3nk.com" class="contact-alt-link">in@t3nk.com</a>
+		</p>
+
 		<div class="contact-stats">
 			<div>
-				<div class="contact-stat-value">Capital + code</div>
-				<div class="contact-stat-label">How we work</div>
+				<div class="contact-stat-value">24</div>
+				<div class="contact-stat-label">Portfolio Companies</div>
 			</div>
 
 			<div>
-				<div class="contact-stat-value">Early stage</div>
-				<div class="contact-stat-label">Stage</div>
+				<div class="contact-stat-value">$180M</div>
+				<div class="contact-stat-label">Assets Under Management</div>
 			</div>
 
 			<div>
-				<div class="contact-stat-value">Software</div>
-				<div class="contact-stat-label">Focus</div>
+				<div class="contact-stat-value">12</div>
+				<div class="contact-stat-label">Countries</div>
 			</div>
 
 			<div>
-				<div class="contact-stat-value">Long-term</div>
-				<div class="contact-stat-label">Horizon</div>
+				<div class="contact-stat-value">3.2x</div>
+				<div class="contact-stat-label">Avg. MOIC</div>
 			</div>
 		</div>
 	</div>
@@ -127,6 +132,25 @@ const year = new Date().getFullYear();
 		color: var(--gray-500);
 	}
 
+	/* Secondary channel below the aside — the primary CTA goes to /pitch */
+	.contact-alt {
+		margin-top: 0.75rem;
+		font-size: 0.875rem;
+		font-family: var(--font-mono);
+		color: var(--gray-400);
+	}
+
+	.contact-alt-link {
+		color: var(--gray-600);
+		border-bottom: 2px solid var(--gray-300);
+		transition: color 0.3s ease, border-color 0.3s ease;
+	}
+
+	.contact-alt-link:hover {
+		color: var(--black);
+		border-color: var(--black);
+	}
+
 	/* Stats / principles row */
 	.contact-stats {
 		display: grid;
@@ -137,10 +161,9 @@ const year = new Date().getFullYear();
 		border-top: 1px solid var(--gray-100);
 	}
 
-	/* Slightly smaller than deer.capital's numeric stats — these are words,
-	   and they need to fit one line per column. */
+	/* Deer-style numeric stats — back to the template's text-3xl sizing. */
 	.contact-stat-value {
-		font-size: 1.5rem;
+		font-size: 1.875rem;
 		font-weight: 700;
 	}
 
