@@ -13,7 +13,11 @@ const { member } = Astro.props;
 const { Content } = await render(member);
 ---
 
-<Layout title={`${member.data.name} — Team`} description={member.data.desc}>
+<Layout
+	title={`${member.data.name} — Team`}
+	description={member.data.desc}
+	image={asset(`/og/team/${member.id}.png`)}
+>
 	<article class="person">
 		<div class="person-inner">
 			<a href={url('team')} class="person-back">← THE TEAM</a>

@@ -6,10 +6,10 @@
 // Reserved feed slugs: "projects", "updates", "tag/*". Avoid entry ids with
 // those names (enforced by the collision assertion below).
 import Layout from '../../layouts/Layout.astro';
-import WorkFeed from '../../components/WorkFeed.astro';
 import EntryDetail from '../../components/work/EntryDetail.astro';
+import WorkFeed from '../../components/WorkFeed.astro';
 import { slugify, byOrder, byDateDesc } from '../../lib/work';
-import { url } from '../../consts';
+import { url, asset } from '../../consts';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -120,6 +120,7 @@ const schemaJSON =
 	title={pageTitle}
 	description={description}
 	ogType={isFeed ? 'website' : 'article'}
+	image={props.kind === 'detail' ? asset(`/og/work/${props.entry.id}.png`) : undefined}
 >
 	{schemaJSON && <script is:inline type="application/ld+json" set:html={schemaJSON} />}
 	{
