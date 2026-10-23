@@ -30,6 +30,7 @@ const siteURL = new URL('/', Astro.site).toString();
 ---
 
 <link rel="icon" type="image/svg+xml" href={asset('/favicon.svg')} />
+<link rel="icon" href={asset('/favicon.ico')} sizes="32x32" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={new URL('rss.xml', Astro.site)} />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
