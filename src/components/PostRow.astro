@@ -7,12 +7,18 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
 	post: CollectionEntry<'posts'>;
 	no: number;
+	/** Dark-on-black variant for the home posts strip. */
+	dark?: boolean;
 }
 
-const { post, no } = Astro.props;
+const { post, no, dark = false } = Astro.props;
 ---
 
-<a href={url(`posts/${post.id}`)} class="post-row" aria-label={post.data.title}>
+<a
+	href={url(`posts/${post.id}`)}
+	class={dark ? 'post-row post-row-dark' : 'post-row'}
+	aria-label={post.data.title}
+>
 	<span class="post-no">#{String(no).padStart(2, '0')}</span>
 	<div class="post-main">
 		<h2 class="post-title">{post.data.title}</h2>
@@ -102,5 +108,36 @@ const { post, no } = Astro.props;
 		.post-side {
 			order: -1;
 		}
+	}
+
+	/* Dark-on-black variant (home posts strip): card on black, light type. */
+	.post-row-dark {
+		background: rgba(255, 255, 255, 0.03);
+		border-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.post-row-dark:hover {
+		border-color: rgba(255, 255, 255, 0.3);
+	}
+
+	.post-row-dark .post-no {
+		color: var(--gray-500);
+	}
+
+	.post-row-dark .post-title {
+		color: var(--white);
+	}
+
+	.post-row-dark .post-desc {
+		color: var(--gray-400);
+	}
+
+	.post-row-dark .post-tag {
+		color: var(--gray-400);
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.post-row-dark .post-side {
+		color: var(--gray-500);
 	}
 </style>
