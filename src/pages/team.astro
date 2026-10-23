@@ -5,10 +5,6 @@ import Team from '../components/sections/Team.astro';
 
 <Layout title="The Team" description="The engineers and operators behind T3NK">
 	<div class="team-light">
-		<div class="team-head">
-			<h1 class="team-title">THE TEAM</h1>
-			<p class="team-sub">The engineers and operators behind T3NK</p>
-		</div>
 		<Team />
 	</div>
 </Layout>
@@ -18,30 +14,5 @@ import Team from '../components/sections/Team.astro';
 		padding-top: 6rem;
 		min-height: 100vh;
 		background: var(--white);
-	}
-
-	.team-head {
-		max-width: 80rem;
-		margin: 0 auto 3rem;
-		padding: 0 1.5rem;
-		text-align: center;
-	}
-
-	.team-title {
-		font-size: 2.25rem;
-		font-weight: 900;
-		margin-bottom: 1rem;
-	}
-
-	.team-sub {
-		font-size: 1.25rem;
-		color: var(--gray-600);
-		font-family: var(--font-mono);
-	}
-
-	@media (min-width: 768px) {
-		.team-title {
-			font-size: 3.75rem;
-		}
 	}
 </style>
