@@ -32,7 +32,8 @@ const posts = defineCollection({
 });
 
 // TEAM — one markdown file per person. The body is their personal-page bio;
-// `desc` is the short card copy shown on /team.
+// `desc` is the short card copy shown on /team; `hobbies` are emoji+title
+// chips shown off the clock on the profile page.
 const team = defineCollection({
 	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/team' }),
 	schema: z.object({
@@ -42,6 +43,7 @@ const team = defineCollection({
 		photo: z.string(), // path under /team/ (public dir), e.g. "/team/akhil-thakur.png"
 		links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
 		order: z.number().optional(),
+		hobbies: z.array(z.object({ emoji: z.string(), title: z.string() })).default([]),
 	}),
 });
 
