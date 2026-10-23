@@ -6,6 +6,7 @@ import Icon from '../Icon.astro';
 import FormattedDate from '../FormattedDate.astro';
 import WorkCard from '../WorkCard.astro';
 import { url } from '../../consts';
+import { slugify } from '../../lib/work';
 
 interface Props {
 	entry: CollectionEntry<'work'>;
@@ -28,7 +29,9 @@ const projectTitle = entry.data.project ? projectTitles.get(entry.data.project) 
 		<div class="detail-tags">
 			{
 				entry.data.tags.map((tag) => (
-					<span class="detail-tag">{tag}</span>
+					<a href={url(`work/tag/${slugify(tag)}`)} class="detail-tag" aria-label={`More in ${tag}`}>
+						{tag}
+					</a>
 				))
 			}
 		</div>
@@ -90,7 +93,8 @@ const projectTitle = entry.data.project ? projectTitles.get(entry.data.project) 
 	.detail-inner {
 		max-width: 56rem;
 		margin: 0 auto;
-		padding: 2.5rem 1.5rem 0;
+		/* 6rem clears the fixed header — same spacer as the post detail. */
+		padding: 6rem 1.5rem 0;
 	}
 
 	.detail-back {
@@ -114,6 +118,7 @@ const projectTitle = entry.data.project ? projectTitles.get(entry.data.project) 
 		margin: 2.5rem 0 1.5rem;
 	}
 
+	/* Tag chip — breadcrumb into the tag feed (anchors, invert on hover). */
 	.detail-tag {
 		font-family: var(--font-mono);
 		font-size: 0.625rem;
@@ -125,6 +130,17 @@ const projectTitle = entry.data.project ? projectTitles.get(entry.data.project) 
 		padding: 0.25rem 0.5rem;
 		border-radius: 0.25rem;
 		font-weight: 700;
+	}
+
+	a.detail-tag:hover {
+		background: var(--black);
+		border-color: var(--black);
+		color: var(--white);
+	}
+
+	a.detail-tag:focus-visible {
+		outline: 2px solid var(--black);
+		outline-offset: 1px;
 	}
 
 	.detail-title {
