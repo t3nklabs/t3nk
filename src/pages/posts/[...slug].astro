@@ -54,6 +54,8 @@ const schemaJSON = detail
 			headline: detail.data.title,
 			description: detail.data.desc,
 			datePublished: detail.data.date,
+			// Post series (T3NK, DECISION NOTES, ...) — schema.org articleSection.
+			articleSection: detail.data.tags,
 			author: { '@id': `${siteURL}#organization` },
 			publisher: { '@id': `${siteURL}#organization` },
 		})
