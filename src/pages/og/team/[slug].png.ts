@@ -12,7 +12,6 @@ import {
 	pngResponse,
 	renderPng,
 	text,
-	titleSize,
 	topRow,
 	GRAY,
 	type El,
@@ -94,7 +93,7 @@ function card(member: Member, photo: string): El {
 		columns,
 		bottomRow(
 			[text({ fontFamily: 'JetBrains Mono', fontSize: 20, color: GRAY }, member.data.role.toUpperCase())],
-			'THE BUILDERS',
+			String(member.data.order ?? 0).padStart(2, '0'),
 		),
 	]);
 }
