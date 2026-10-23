@@ -11,7 +11,9 @@ interface Props {
 const { name, size = 24, class: className = '' } = Astro.props;
 
 let svg = icons[name];
-svg = svg.replace('width="24" height="24"', `width="${size}" height="${size}"`);
+// lucide-static writes width/height on separate lines, so match attribute-wise.
+svg = svg.replace('width="24"', `width="${size}"`);
+svg = svg.replace('height="24"', `height="${size}"`);
 if (className) {
 	svg = svg.replace('<svg', `<svg class="${className.replaceAll('"', '&quot;')}"`);
 }

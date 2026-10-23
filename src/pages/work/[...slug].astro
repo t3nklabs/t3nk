@@ -121,6 +121,7 @@ const schemaJSON =
 	description={description}
 	ogType={isFeed ? 'website' : 'article'}
 	image={props.kind === 'detail' ? asset(`/og/work/${props.entry.id}.png`) : undefined}
+	imageAlt={props.kind === 'detail' ? `${props.entry.data.title} — T3NK work card` : undefined}
 >
 	{schemaJSON && <script is:inline type="application/ld+json" set:html={schemaJSON} />}
 	{

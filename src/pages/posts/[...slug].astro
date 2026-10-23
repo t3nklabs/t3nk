@@ -65,6 +65,7 @@ const schemaJSON = detail
 	description={description}
 	ogType={detail ? 'article' : 'website'}
 	image={image}
+	imageAlt={detail ? `${detail.data.title} — T3NK post card` : undefined}
 >
 	{schemaJSON && <script is:inline type="application/ld+json" set:html={schemaJSON} />}
 	{

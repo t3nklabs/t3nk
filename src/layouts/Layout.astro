@@ -9,16 +9,18 @@ interface Props {
 	title?: string;
 	description?: string;
 	image?: string;
+	/** og:image:alt — plain description of the share image. */
+	imageAlt?: string;
 	/** og:type — "website" everywhere, "article" on content pages. */
 	ogType?: 'website' | 'article';
 }
-const { title, description, image, ogType } = Astro.props;
+const { title, description, image, imageAlt, ogType } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={image} ogType={ogType} />
+		<BaseHead title={title} description={description} image={image} imageAlt={imageAlt} ogType={ogType} />
 	</head>
 	<body>
 		<NoiseCanvas />
