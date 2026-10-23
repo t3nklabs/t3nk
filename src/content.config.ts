@@ -39,7 +39,7 @@ const team = defineCollection({
 		name: z.string(),
 		role: z.string(),
 		desc: z.string(),
-		photo: z.string(), // path under /team/ (public dir), e.g. "/team/aman.png"
+		photo: z.string(), // path under /team/ (public dir), e.g. "/team/akhil-thakur.png"
 		links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
 		order: z.number().optional(),
 	}),
