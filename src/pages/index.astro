@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { asset } from '../consts';
 import HeroSection from '../components/sections/HeroSection.astro';
 import TechStackSection from '../components/sections/TechStackSection.astro';
 import ManifestoSection from '../components/sections/ManifestoSection.astro';
@@ -10,7 +11,10 @@ import PostsSection from '../components/sections/PostsSection.astro';
 import ContactSection from '../components/sections/ContactSection.astro';
 ---
 
-<Layout>
+<Layout
+	image={asset('/og/home.png')}
+	imageAlt="BUILDING SOMETHING BIG? — T3NK, the engineering-first VC: 24 portfolio companies, $180M assets under management, 12 countries, 3.2x average MOIC."
+>
 	<HeroSection />
 	<TechStackSection />
 	<ManifestoSection />
