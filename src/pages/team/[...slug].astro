@@ -101,22 +101,29 @@ const { Content } = await render(member);
 		margin-top: 3rem;
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 3rem;
+		gap: 2.5rem;
 		align-items: start;
+		justify-items: center;
 	}
 
 	.person-photo-wrap {
+		width: 100%;
 		overflow: hidden;
 		background: var(--gray-100);
-		aspect-ratio: 3 / 4;
-		max-width: 24rem;
+		aspect-ratio: 3 / 2;
+		max-width: 48rem;
 	}
 
 	.person-photo {
 		width: 100%;
 		height: 100%;
-		object-fit: contain;
+		object-fit: cover;
 		object-position: center;
+	}
+
+	.person-body {
+		width: 100%;
+		max-width: 48rem;
 	}
 
 	.person-name {
@@ -218,9 +225,6 @@ const { Content } = await render(member);
 	}
 
 	@media (min-width: 768px) {
-		.person-grid {
-			grid-template-columns: 20rem 1fr;
-		}
 		.person-name {
 			font-size: 4rem;
 		}
