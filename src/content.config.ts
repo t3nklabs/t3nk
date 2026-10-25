@@ -40,7 +40,7 @@ const team = defineCollection({
 		name: z.string(),
 		role: z.string(),
 		desc: z.string(),
-		photo: z.string(), // path under /team/ (public dir), e.g. "/team/akhil-thakur.png"
+		photo: z.string(), // path under /team/ (public dir), e.g. "/team/kevin-sterling.png"
 		// Shown as a "BORN:" field on the profile page — "City, Country".
 		born: z.string().optional(),
 		links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
