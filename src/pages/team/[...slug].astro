@@ -31,14 +31,6 @@ const { Content } = await render(member);
 				<div class="person-body">
 					<h1 class="person-name">{member.data.name}</h1>
 					<p class="person-role">{member.data.role}</p>
-					{
-						member.data.born && (
-							<p class="person-born">
-								<span class="person-born-label">BORN:</span>
-								{member.data.born}
-							</p>
-						)
-					}
 					<p class="person-desc">{member.data.desc}</p>
 
 					{
@@ -143,23 +135,6 @@ const { Content } = await render(member);
 		border-bottom: 1px solid var(--gray-200);
 		padding-bottom: 1rem;
 		margin-bottom: 1rem;
-	}
-
-	/* Labeled "BORN:" field row under the role. */
-	.person-born {
-		font-family: var(--font-mono);
-		font-size: 0.875rem;
-		letter-spacing: 0.05em;
-		color: var(--gray-700);
-		text-transform: uppercase;
-		text-align: left;
-		margin-bottom: 1.5rem;
-	}
-
-	.person-born-label {
-		color: var(--gray-400);
-		font-weight: 700;
-		margin-right: 0.5rem;
 	}
 
 	.person-desc {

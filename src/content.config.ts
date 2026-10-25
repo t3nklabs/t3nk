@@ -41,8 +41,6 @@ const team = defineCollection({
 		role: z.string(),
 		desc: z.string(),
 		photo: z.string(), // path under /team/ (public dir), e.g. "/team/kevin-sterling.png"
-		// Shown as a "BORN:" field on the profile page — "City, Country".
-		born: z.string().optional(),
 		links: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
 		order: z.number().optional(),
 		hobbies: z.array(z.object({ emoji: z.string(), title: z.string() })).default([]),
